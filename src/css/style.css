@@ -1,0 +1,20 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  place-items: center;
+}
+
+.grid-item {
+  border: 5px solid black;
+  max-width: 150px;
+  max-height: 150px;
+}
