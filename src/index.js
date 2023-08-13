@@ -5,6 +5,7 @@ import {
   createSearchModal,
   triggerSearchModal,
 } from "./searchModal";
+import { createCategories } from "./categories";
 
 const playerInfo = [
   {
@@ -55,9 +56,16 @@ const playerInfo = [
 ];
 
 const initializeGame = () => {
+  const content = document.createElement("div");
+  content.id = "content";
+
   const grid = document.createElement("div");
   grid.id = "player-grid";
-  document.body.appendChild(grid);
+  content.appendChild(grid);
+  content.appendChild(createCategories("row"));
+  content.appendChild(createCategories("col"));
+
+  document.body.appendChild(content);
   document.body.appendChild(createSearchModal());
   document.body.appendChild(createOverlay());
   for (let i = 0; i < 9; i++) {
