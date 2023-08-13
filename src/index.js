@@ -9,9 +9,9 @@ import { createCategories } from "./categories";
 
 const playerInfo = [
   {
-    name: "Kris Letang",
-    team: "pit",
-    season: "20162017",
+    name: "Jonathan Marchessault",
+    team: "vgk",
+    season: "20222023",
   },
   {
     name: "Zach Hyman",
@@ -83,9 +83,11 @@ const createGridItem = (index) => {
 
   const playerImg = document.createElement("img");
   playerImg.classList.add("player-img");
+  playerImg.src = getPlayerMugshot(playerInfo[index]); // Testing purposes
 
   const playerName = document.createElement("p");
   playerName.classList.add("player-name");
+  playerName.textContent = playerInfo[index].name;
   gridItem.appendChild(playerImg);
   gridItem.appendChild(playerName);
 

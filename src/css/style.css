@@ -1,5 +1,6 @@
 /* || General Styles */
 body {
+  font-family: Arial, Helvetica, sans-serif;
   background-color: black;
   height: 100vh;
   display: flex;
@@ -48,9 +49,25 @@ body {
 }
 
 .grid-item {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
   border: 2px solid white;
   width: 150px;
   height: 150px;
+}
+
+.player-img {
+  grid-row: span 4;
+  width: 100%;
+}
+
+.player-name {
+  margin: 0;
+  z-index: 1;
+  text-align: center;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 /* || Search Modal */
