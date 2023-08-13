@@ -1,4 +1,3 @@
-import players, { getPlayerId, getPlayerMugshot } from "@nhl-api/players";
 import "./css/style.css";
 import {
   createOverlay,
@@ -7,7 +6,6 @@ import {
 } from "./search-modal";
 import { createCategories } from "./categories";
 import { getRow, getCol } from "./grid-item";
-import axios from "axios";
 
 const initializeGame = async () => {
   const content = document.createElement("div");
@@ -16,10 +14,10 @@ const initializeGame = async () => {
   const grid = document.createElement("div");
   grid.id = "player-grid";
   content.appendChild(grid);
-  content.appendChild(await createCategories("col"));
-  content.appendChild(await createCategories("row"));
 
   document.body.appendChild(content);
+  await createCategories("col");
+  await createCategories("row");
   document.body.appendChild(createSearchModal());
   document.body.appendChild(createOverlay());
   for (let i = 0; i < 9; i++) {
@@ -65,9 +63,6 @@ const getCategories = (gridItem) => {
 
   const rowTeam = rowCategory.dataset.team;
   const colTeam = colCategory.dataset.team;
-
-  console.log(rowCategory);
-  console.log(rowTeam);
 
   gridItem.dataset.team1 = rowTeam;
   gridItem.dataset.team2 = colTeam;

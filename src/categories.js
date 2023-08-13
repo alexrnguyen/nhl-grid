@@ -3,6 +3,9 @@ const createCategories = async (axis) => {
   const categories = document.createElement("div");
   categories.id = `${axis}-categories`;
 
+  const content = document.getElementById("content");
+  content.appendChild(categories);
+
   for (let i = 0; i < 3; i++) {
     const category = document.createElement("img");
     category.classList.add("category");
@@ -10,8 +13,6 @@ const createCategories = async (axis) => {
     await randomCategory(category);
     categories.appendChild(category);
   }
-
-  return categories;
 };
 
 const randomCategory = async (category) => {
@@ -26,11 +27,26 @@ const randomCategory = async (category) => {
   );
 
   const teamAbbreviation = response.data.teams[0].abbreviation;
-  category.dataset.team = teamAbbreviation;
+  if (checkCategories(teamAbbreviation)) {
+    category.dataset.team = teamAbbreviation;
+  } else {
+    await randomCategory(category);
+  }
 };
 
 // Ensure that no team is chosen more than once!
-const checkCategories = () => {};
+const checkCategories = (teamAbbreviation) => {
+  const categories = document.querySelectorAll(".category");
+  let validCategory = true;
+  Array.from(categories).forEach((category) => {
+    console.log(category.dataset.team, teamAbbreviation);
+    if (category.dataset.team === teamAbbreviation) {
+      validCategory = false;
+    }
+  });
+  console.log(validCategory);
+  return validCategory;
+};
 
 const getTeams = async () => {
   const response = await axios.get(
