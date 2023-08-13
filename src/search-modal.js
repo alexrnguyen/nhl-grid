@@ -7,6 +7,10 @@ const createSearchModal = () => {
   const searchModal = document.createElement("div");
   searchModal.id = "search-modal";
   searchModal.classList.add("hidden");
+
+  const headerContainer = document.createElement("div");
+  headerContainer.id = "modal-header-container";
+
   const header = document.createElement("h1");
   header.id = "modal-header";
 
@@ -19,14 +23,16 @@ const createSearchModal = () => {
     toggleModal(searchModal);
   });
 
+  headerContainer.appendChild(header);
+  headerContainer.appendChild(closeButton);
+
   const searchInput = document.createElement("input");
   searchInput.type = "text";
   searchInput.placeholder = "Search for player...";
   searchInput.name = "search-player";
   searchInput.id = "search-player";
 
-  searchModal.appendChild(closeButton);
-  searchModal.appendChild(header);
+  searchModal.appendChild(headerContainer);
   searchModal.appendChild(searchInput);
   return searchModal;
 };

@@ -103,6 +103,34 @@ footer {
   place-items: center;
 }
 
+#modal-header-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#modal-header-container h1 {
+  grid-column: 2;
+  place-self: center;
+}
+
+#close-modal {
+  grid-column: 3;
+  justify-self: end;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: transparent;
+}
+
+#search-player {
+  border-radius: 5px;
+  min-height: 1.5rem;
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid black;
+}
+
 /* Source: https://www.freecodecamp.org/news/how-to-build-a-modal-with-javascript/ */
 #overlay {
   position: fixed;
