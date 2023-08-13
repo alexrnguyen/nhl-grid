@@ -43,7 +43,6 @@ const triggerSearchModal = (index) => {
       event.preventDefault();
       const player = await searchPlayer(searchInput.value);
       const gridItem = document.querySelectorAll(".grid-item")[index];
-      console.log(gridItem);
       addPlayer(gridItem, player);
     }
   };

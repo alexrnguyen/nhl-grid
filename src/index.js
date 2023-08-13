@@ -6,6 +6,7 @@ import {
   triggerSearchModal,
 } from "./search-modal";
 import { createCategories } from "./categories";
+import axios from "axios";
 
 // Sample player data (remove later)
 const playerInfo = [
