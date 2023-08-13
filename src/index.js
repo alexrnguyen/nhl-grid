@@ -49,7 +49,10 @@ const createGridItem = (index) => {
   getCategories(gridItem);
 
   gridItem.addEventListener("click", () => {
-    triggerSearchModal(gridItem);
+    // Only open search modal if the grid item does not have a valid player
+    if (!gridItem.classList.contains("correct")) {
+      triggerSearchModal(gridItem);
+    }
   });
 };
 

@@ -39,12 +39,10 @@ const checkCategories = (teamAbbreviation) => {
   const categories = document.querySelectorAll(".category");
   let validCategory = true;
   Array.from(categories).forEach((category) => {
-    console.log(category.dataset.team, teamAbbreviation);
     if (category.dataset.team === teamAbbreviation) {
       validCategory = false;
     }
   });
-  console.log(validCategory);
   return validCategory;
 };
 

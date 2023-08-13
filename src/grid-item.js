@@ -1,8 +1,7 @@
-import { getPlayerMugshot } from "@nhl-api/players";
-import { getTeamId } from "@nhl-api/teams";
 import axios from "axios";
 
 const addPlayer = (gridItem, player) => {
+  gridItem.classList.add("correct");
   const gridItemChildren = Array.from(gridItem.childNodes);
   const playerImg = gridItemChildren[0];
   const isActive = player.active;
@@ -18,7 +17,7 @@ const addPlayer = (gridItem, player) => {
         playerImg.src = `https://assets.nhle.com/mugs/nhl/20222023/${abbreviation}/${player.id}.png`;
       });
   } else {
-    getLastTeam(playerImg, player.id);
+    getLatestImage(playerImg, player.id);
   }
   const playerName = gridItemChildren[1];
   playerName.textContent = player.fullName;
@@ -32,7 +31,8 @@ const getCol = (index) => {
   return index % 3;
 };
 
-const getLastTeam = (playerImg, playerId) => {
+// Get th
+const getLatestImage = (playerImg, playerId) => {
   axios
     .get(
       `https://statsapi.web.nhl.com/api/v1/people/${playerId}/stats/?stats=yearByYear`

@@ -2,6 +2,7 @@ import players, { getPlayerId, getPlayerMugshot } from "@nhl-api/players";
 import nhlApi from "@nhl-api/client";
 import { addPlayer } from "./grid-item";
 import { searchPlayer } from "./search-controller";
+import { checkPlayer } from "./game-controller";
 
 const createSearchModal = () => {
   const searchModal = document.createElement("div");
@@ -52,8 +53,19 @@ const triggerSearchModal = (gridItem) => {
     if (event.key === "Enter") {
       event.preventDefault();
       const player = await searchPlayer(searchInput.value);
+      console.log(player);
       const gridItem = document.querySelectorAll(".grid-item")[index];
-      addPlayer(gridItem, player);
+
+      const team1 = gridItem.dataset.team1;
+      const team2 = gridItem.dataset.team2;
+      const playedForBothTeams = await checkPlayer(team1, team2, player);
+      if (playedForBothTeams) {
+        addPlayer(gridItem, player);
+      } else {
+        console.log("Incorrect!");
+      }
+      document.getElementById("search-player").value = "";
+      toggleModal(searchModal);
     }
   };
 };
