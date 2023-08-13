@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nhl-api/client": "^3.1.4",
     "@nhl-api/players": "^3.1.4",
+    "@nhl-api/teams": "^3.1.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "nhl-api": "^1.2.0"

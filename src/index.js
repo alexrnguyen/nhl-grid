@@ -4,9 +4,10 @@ import {
   createOverlay,
   createSearchModal,
   triggerSearchModal,
-} from "./searchModal";
+} from "./search-modal";
 import { createCategories } from "./categories";
 
+// Sample player data (remove later)
 const playerInfo = [
   {
     name: "Jonathan Marchessault",
@@ -83,11 +84,9 @@ const createGridItem = (index) => {
 
   const playerImg = document.createElement("img");
   playerImg.classList.add("player-img");
-  playerImg.src = getPlayerMugshot(playerInfo[index]); // Testing purposes
 
   const playerName = document.createElement("p");
   playerName.classList.add("player-name");
-  playerName.textContent = playerInfo[index].name;
   gridItem.appendChild(playerImg);
   gridItem.appendChild(playerName);
 

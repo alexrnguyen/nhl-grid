@@ -1,8 +1,16 @@
 /* || General Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --grid-gap: 1rem;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: black;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +20,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 5fr;
+  width: 600px;
+  height: 600px;
 }
 
 /* || Categories */
@@ -21,7 +31,6 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  gap: 1rem;
 }
 
 #col-categories {
@@ -30,7 +39,6 @@ body {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   place-items: center;
-  gap: 1rem;
 }
 
 /* || Grid */
@@ -39,8 +47,8 @@ body {
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
   place-items: center;
+  border: 2px solid white;
 }
 
 .category {
@@ -101,12 +109,4 @@ body {
 
 .hidden {
   visibility: hidden;
-}
-
-/* || Media Queries */
-@media only screen and (max-width: 600px) {
-  .grid-item {
-    width: 50px;
-    height: 50px;
-  }
 }
