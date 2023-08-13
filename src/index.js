@@ -1,14 +1,10 @@
 import players, { getPlayerId, getPlayerMugshot } from "@nhl-api/players";
 import "./css/style.css";
-
-const grid = document.createElement("div");
-grid.classList.add("grid");
-
-const mugshot = getPlayerMugshot({
-  name: "Zach Hyman",
-  team: "tor",
-  season: "20182019",
-});
+import {
+  createOverlay,
+  createSearchModal,
+  triggerSearchModal,
+} from "./searchModal";
 
 const playerInfo = [
   {
@@ -58,12 +54,36 @@ const playerInfo = [
   },
 ];
 
-playerInfo.forEach((player) => {
-  const mugshot = getPlayerMugshot(player);
-  const mugshotImg = document.createElement("img");
-  mugshotImg.classList.add("grid-item");
-  mugshotImg.src = mugshot;
-  grid.appendChild(mugshotImg);
-});
+const initializeGame = () => {
+  const grid = document.createElement("div");
+  grid.id = "player-grid";
+  document.body.appendChild(grid);
+  document.body.appendChild(createSearchModal());
+  document.body.appendChild(createOverlay());
+  for (let i = 0; i < 9; i++) {
+    createGridItem(i);
+  }
+};
 
-document.body.appendChild(grid);
+const createGridItem = (index) => {
+  const grid = document.getElementById("player-grid");
+  const gridItem = document.createElement("div");
+  grid.appendChild(gridItem);
+
+  gridItem.classList.add("grid-item");
+  gridItem.dataset.index = index;
+
+  const playerImg = document.createElement("img");
+  playerImg.classList.add("player-img");
+
+  const playerName = document.createElement("p");
+  playerName.classList.add("player-name");
+  gridItem.appendChild(playerImg);
+  gridItem.appendChild(playerName);
+
+  gridItem.addEventListener("click", () => {
+    triggerSearchModal(index);
+  });
+};
+
+initializeGame();

@@ -1,3 +1,4 @@
+/* || General Styles */
 body {
   height: 100vh;
   display: flex;
@@ -6,7 +7,8 @@ body {
   overflow-y: hidden;
 }
 
-.grid {
+/* || Grid */
+#player-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -14,7 +16,48 @@ body {
 }
 
 .grid-item {
-  border: 5px solid black;
-  max-width: 150px;
-  max-height: 150px;
+  border: 2px solid black;
+  width: 150px;
+  height: 150px;
+}
+
+/* || Search Modal */
+
+#search-modal {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  padding: 1rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+}
+
+/* Source: https://www.freecodecamp.org/news/how-to-build-a-modal-with-javascript/ */
+#overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+/* || Media Queries */
+@media only screen and (max-width: 600px) {
+  .grid-item {
+    width: 50px;
+    height: 50px;
+  }
 }
