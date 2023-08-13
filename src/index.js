@@ -6,66 +6,18 @@ import {
   triggerSearchModal,
 } from "./search-modal";
 import { createCategories } from "./categories";
+import { getRow, getCol } from "./grid-item";
 import axios from "axios";
 
-// Sample player data (remove later)
-const playerInfo = [
-  {
-    name: "Jonathan Marchessault",
-    team: "vgk",
-    season: "20222023",
-  },
-  {
-    name: "Zach Hyman",
-    team: "tor",
-    season: "20182019",
-  },
-  {
-    name: "Vladimir Tarasenko",
-    team: "stl",
-    season: "20162017",
-  },
-  {
-    name: "Leon Draisaitl",
-    team: "edm",
-    season: "20212022",
-  },
-  {
-    name: "Patrice Bergeron",
-    team: "bos",
-    season: "20142015",
-  },
-  {
-    name: "Connor McDavid",
-    team: "edm",
-    season: "20152016",
-  },
-  {
-    name: "Daniel Sedin",
-    team: "van",
-    season: "20102011",
-  },
-  {
-    name: "Wayne Gretzky",
-    team: "edm",
-    season: "19861987",
-  },
-  {
-    name: "Tim Horton",
-    team: "tor",
-    season: "19681969",
-  },
-];
-
-const initializeGame = () => {
+const initializeGame = async () => {
   const content = document.createElement("div");
   content.id = "content";
 
   const grid = document.createElement("div");
   grid.id = "player-grid";
   content.appendChild(grid);
-  content.appendChild(createCategories("row"));
-  content.appendChild(createCategories("col"));
+  content.appendChild(await createCategories("col"));
+  content.appendChild(await createCategories("row"));
 
   document.body.appendChild(content);
   document.body.appendChild(createSearchModal());
@@ -73,6 +25,11 @@ const initializeGame = () => {
   for (let i = 0; i < 9; i++) {
     createGridItem(i);
   }
+
+  const acknowledgement = document.createElement("footer");
+  acknowledgement.textContent =
+    "All logos and images owned by the National Hockey League. Use of any logos on this website does not constitute a sponsorship or endorsement by the teams, league, or trademark holders.";
+  document.body.appendChild(acknowledgement);
 };
 
 const createGridItem = (index) => {
@@ -91,9 +48,29 @@ const createGridItem = (index) => {
   gridItem.appendChild(playerImg);
   gridItem.appendChild(playerName);
 
+  getCategories(gridItem);
+
   gridItem.addEventListener("click", () => {
-    triggerSearchModal(index);
+    triggerSearchModal(gridItem);
   });
+};
+
+const getCategories = (gridItem) => {
+  const index = gridItem.dataset.index;
+  const row = getRow(index);
+  const col = getCol(index);
+
+  const rowCategory = document.querySelectorAll(".category.row")[row];
+  const colCategory = document.querySelectorAll(".category.col")[col];
+
+  const rowTeam = rowCategory.dataset.team;
+  const colTeam = colCategory.dataset.team;
+
+  console.log(rowCategory);
+  console.log(rowTeam);
+
+  gridItem.dataset.team1 = rowTeam;
+  gridItem.dataset.team2 = colTeam;
 };
 
 initializeGame();

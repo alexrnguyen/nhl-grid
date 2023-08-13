@@ -24,6 +24,14 @@ const addPlayer = (gridItem, player) => {
   playerName.textContent = player.fullName;
 };
 
+const getRow = (index) => {
+  return Math.floor(index / 3);
+};
+
+const getCol = (index) => {
+  return index % 3;
+};
+
 const getLastTeam = (playerImg, playerId) => {
   axios
     .get(
@@ -44,4 +52,4 @@ const getLastTeam = (playerImg, playerId) => {
     });
 };
 
-export { addPlayer };
+export { addPlayer, getRow, getCol };

@@ -31,11 +31,15 @@ const createSearchModal = () => {
   return searchModal;
 };
 
-const triggerSearchModal = (index) => {
+const triggerSearchModal = (gridItem) => {
+  const index = gridItem.dataset.index;
   const searchModal = document.getElementById("search-modal");
   toggleModal(searchModal);
+
+  const team1 = gridItem.dataset.team1;
+  const team2 = gridItem.dataset.team2;
   const header = document.getElementById("modal-header");
-  header.textContent = index;
+  header.textContent = `${team1}-${team2}`;
 
   const searchInput = document.getElementById("search-player");
   searchInput.onkeydown = async (event) => {
@@ -46,15 +50,6 @@ const triggerSearchModal = (index) => {
       addPlayer(gridItem, player);
     }
   };
-  /*searchInput.addEventListener("keydown", async (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const player = await searchPlayer(searchInput.value);
-      const gridItem = document.querySelectorAll(".grid-item")[index];
-      console.log(gridItem);
-      addPlayer(gridItem, player);
-    }
-  });*/
 };
 
 const toggleModal = (modal) => {
