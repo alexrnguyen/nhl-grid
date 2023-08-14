@@ -1,4 +1,6 @@
 import axios from "axios";
+
+// Verify that a given player has played for both teams given as arguments
 const checkPlayer = async (team1, team2, player) => {
   const abbreviationToTeamMap = generateAbbreviationMap();
 

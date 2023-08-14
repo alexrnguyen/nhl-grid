@@ -1,5 +1,3 @@
-import players, { getPlayerId, getPlayerMugshot } from "@nhl-api/players";
-import nhlApi from "@nhl-api/client";
 import { addPlayer } from "./grid-item";
 import { searchPlayer } from "./search-controller";
 import { checkPlayer } from "./game-controller";

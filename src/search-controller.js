@@ -6,6 +6,7 @@ const searchPlayer = async (playerName) => {
     playerId = playerId[0].id;
   }
   const response = await nhlApi.getPlayer({ id: playerId });
+  console.log(response);
   return response;
 };
 

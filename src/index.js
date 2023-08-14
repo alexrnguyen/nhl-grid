@@ -10,12 +10,10 @@ import { getRow, getCol } from "./grid-item";
 const initializeGame = async () => {
   const content = document.createElement("div");
   content.id = "content";
-
+  document.body.appendChild(content);
   const grid = document.createElement("div");
   grid.id = "player-grid";
   content.appendChild(grid);
-
-  document.body.appendChild(content);
   await createCategories("col");
   await createCategories("row");
   document.body.appendChild(createSearchModal());

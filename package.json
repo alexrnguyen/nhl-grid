@@ -4,7 +4,11 @@
   "description": "",
   "main": "test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "update-webpage": "git subtree push --prefix dist origin gh-pages",
+    "start": "webpack serve --open",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +22,7 @@
   },
   "devDependencies": {
     "css-loader": "^6.8.1",
+    "favicons": "^7.1.4",
     "html-webpack-plugin": "^5.5.3",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
