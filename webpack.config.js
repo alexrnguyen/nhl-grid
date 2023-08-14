@@ -15,8 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "NHL Grid",
-      favicon: "./src/assets/icons8-hockey-64.png",
+      template: "./src/index.html",
     }),
   ],
   module: {

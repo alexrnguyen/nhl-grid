@@ -1,5 +1,6 @@
 import { getPlayerId } from "@nhl-api/players";
 import nhlApi from "@nhl-api/client";
+import axios from "axios";
 const searchPlayer = async (playerName) => {
   let playerId = getPlayerId(playerName);
   if (typeof playerId === "object") {
