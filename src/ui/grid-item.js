@@ -1,4 +1,6 @@
 import axios from "axios";
+import { generateAbbreviationMap } from "../controllers/game-controller";
+import { getTeams } from "../categories";
 
 const addPlayer = (gridItem, player) => {
   gridItem.classList.add("correct");
@@ -38,17 +40,22 @@ const getLatestImage = (playerImg, playerId) => {
       `https://statsapi.web.nhl.com/api/v1/people/${playerId}/stats/?stats=yearByYear`
     )
     .then((response) => response.data)
-    .then((data) => {
+    .then(async (data) => {
       const lastYear = data["stats"][0]["splits"].pop();
       const lastSeason = lastYear.season;
       const teamId = lastYear.team.id;
-      axios
-        .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
-        .then((response) => response.data)
-        .then((data) => {
-          const abbreviation = data.teams[0].abbreviation;
-          playerImg.src = `https://assets.nhle.com/mugs/nhl/${lastSeason}/${abbreviation}/${playerId}.png`;
-        });
+      const teams = await getTeams();
+      if (teams.includes(teamId)) {
+        axios
+          .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
+          .then((response) => response.data)
+          .then((data) => {
+            const abbreviation = data.teams[0].abbreviation;
+            playerImg.src = `https://assets.nhle.com/mugs/nhl/${lastSeason}/${abbreviation}/${playerId}.png`;
+          });
+      } else {
+        playerImg.src = `https://assets.nhle.com/mugs/nhl/default-skater.png`;
+      }
     });
 };
 

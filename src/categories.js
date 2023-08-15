@@ -59,4 +59,4 @@ const getTeams = async () => {
   return teamIds;
 };
 
-export { createCategories };
+export { createCategories, getTeams };
