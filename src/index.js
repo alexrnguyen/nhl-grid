@@ -3,9 +3,9 @@ import {
   createOverlay,
   createSearchModal,
   triggerSearchModal,
-} from "./search-modal";
+} from "./ui/search-modal";
 import { createCategories } from "./categories";
-import { getRow, getCol } from "./grid-item";
+import { getRow, getCol } from "./ui/grid-item";
 
 const initializeGame = async () => {
   const content = document.createElement("div");

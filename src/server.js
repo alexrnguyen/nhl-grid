@@ -9,11 +9,11 @@ app.use(cors());
 
 let formattedName = "";
 const PORT = process.env.PORT || 3000;
-
 let headers = new Headers();
 headers.append("Access-Control-Allow-Origin", "*");
+
 app.get("/", async function (req, res) {
-  const response = await fetch(
+  const response = await axios.get(
     `https://suggest.svc.nhl.com/svc/suggest/v1/minplayers/${formattedName}`,
     { headers: headers }
   );
@@ -24,6 +24,6 @@ app.post("/", (req, res) => {
   formattedName = req.body.parcel;
 });
 
-app.listen(3000, () => {
-  console.log("alive");
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
