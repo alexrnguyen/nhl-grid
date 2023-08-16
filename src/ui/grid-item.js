@@ -1,5 +1,4 @@
 import axios from "axios";
-import { generateAbbreviationMap } from "../controllers/game-controller";
 import { getTeams } from "../categories";
 
 const addPlayer = (gridItem, player) => {

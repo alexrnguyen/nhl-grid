@@ -1,7 +1,6 @@
 import { addPlayer } from "./grid-item";
 import { searchPlayer } from "../controllers/search-controller";
 import { checkGameOver, checkPlayer } from "../controllers/game-controller";
-import nhlApi from "@nhl-api/client";
 import { getPlayerId } from "@nhl-api/players";
 
 const createSearchModal = () => {

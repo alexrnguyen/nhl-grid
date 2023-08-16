@@ -1,7 +1,14 @@
 # nhl-grid
 
-An NHL trivia game where players are given a grid with each cell
-Inspired by similar games including [NHL Grid](https://www.nhlgrid.com/), [Puckdoku](https://www.puckdoku.com/), and [Immaculate Grid](https://www.immaculategrid.com/hockey).
+An NHL trivia game where users must name a player that played for the teams given on each row and column. Inspired by similar games including [NHL Grid](https://www.nhlgrid.com/), [Puckdoku](https://www.puckdoku.com/), and [Immaculate Grid](https://www.immaculategrid.com/hockey).
+
+## Run Server Locally
+
+This app currently requires the user to run a server on their machine to allow the app to access the suggestions API (ysed when searching for a player). Below is the command needed to run the server.
+
+```sh
+node ./src/server.js
+```
 
 ## Upcoming Features
 
@@ -12,6 +19,7 @@ Inspired by similar games including [NHL Grid](https://www.nhlgrid.com/), [Puckd
 
 ## Outstanding Issues
 
+- User must run server.js locally in order for the GET request for searchPlayer() to work as intended
 - If a retired player's last team is no longer active (eg. Quebec Nordiques), no image will be returned from getLatestImage()
 - Search input needs to be an exact match
 - Can use the same player more than once
