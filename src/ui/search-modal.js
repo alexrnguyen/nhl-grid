@@ -53,7 +53,7 @@ const triggerSearchModal = (gridItem) => {
     if (event.key === "Enter") {
       event.preventDefault();
       const player = await searchPlayer(searchInput.value);
-      //console.log(player);
+      console.log(player);
       const gridItem = document.querySelectorAll(".grid-item")[index];
 
       const team1 = gridItem.dataset.team1;

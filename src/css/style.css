@@ -74,6 +74,10 @@ footer {
   height: 150px;
 }
 
+.grid-item:hover {
+  background-color: gray;
+}
+
 .grid-item.correct {
   border: 4px solid green;
   z-index: 2;

@@ -2,22 +2,26 @@ import { getPlayerId } from "@nhl-api/players";
 import nhlApi from "@nhl-api/client";
 import axios from "axios";
 const searchPlayer = async (playerName) => {
-  let playerId = getPlayerId(playerName);
-  console.log(playerId);
-  if (typeof playerId === "object") {
-    playerId = playerId[0].id;
-  }
-  console.log(playerName);
-  const response = await nhlApi.getPlayer({ id: playerId });
-
-  /*const formattedName = [...playerName.replace(" ", "%20")].join("");
-  console.log(formattedName);
-  const response = await fetch(`http://localhost:3000/`, {
+  await fetch(`http://localhost:3000/`, {
     method: "POST",
-    body: JSON.stringify({ parcel: formattedName }),
-  });*/
-  //console.log(response);
-  return response;
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name: playerName }),
+  });
+  console.log("Response over!");
+  const request = await fetch(`http://localhost:3000/`);
+  let data = await request.json();
+  data = data[0];
+  console.log(data);
+
+  const playerId = Number(data.split("|")[0]);
+
+  const playerObject = await axios.get(
+    `https://statsapi.web.nhl.com/api/v1/people/${playerId}`
+  );
+  const player = playerObject.data.people[0];
+  return player;
 };
 
 export { searchPlayer };
