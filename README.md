@@ -4,7 +4,7 @@ An NHL trivia game where users must name a player that played for the teams give
 
 ## Run Server Locally
 
-This app currently requires the user to run a server on their machine to allow the app to access the suggestions API (ysed when searching for a player). Below is the command needed to run the server.
+This app currently requires the user to run a server on their machine to allow the app to access the suggestions API (used when searching for a player). Below is the command needed to run the server.
 
 ```sh
 node ./src/server.js
