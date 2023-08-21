@@ -11,6 +11,7 @@ let formattedName = "";
 const PORT = process.env.PORT || 3000;
 
 app.get("/", async function (req, res) {
+  // TO-DO: Handle errors for this request
   const response = await axios.get(
     `https://suggest.svc.nhl.com/svc/suggest/v1/minplayers/${formattedName}`
   );

@@ -54,9 +54,7 @@ const getPlayerTeams = async (team1, team2, player) => {
       });
     });
 
-  console.log(allTeams);
   let distinctTeams = [...new Set(allTeams)];
-  console.log(distinctTeams);
   return distinctTeams;
 };
 

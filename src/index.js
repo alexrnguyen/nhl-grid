@@ -14,11 +14,12 @@ const initializeGame = async () => {
   const grid = document.createElement("div");
   grid.id = "player-grid";
   content.appendChild(grid);
-  Promise.all([createCategories("col"), createCategories("row")]).then(() => {
-    for (let i = 0; i < 9; i++) {
-      createGridItem(i);
-    }
-  });
+
+  // TO-DO: Handle errors for this request
+  await Promise.all([createCategories("col"), createCategories("row")]);
+  for (let i = 0; i < 9; i++) {
+    createGridItem(i);
+  }
   document.body.appendChild(createSearchModal());
   document.body.appendChild(createOverlay());
 

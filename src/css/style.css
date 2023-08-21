@@ -140,6 +140,18 @@ footer {
   border: 1px solid black;
 }
 
+#player-items-container {
+  width: 100%;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+/* || Player Item */
+.player-item {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* Source: https://www.freecodecamp.org/news/how-to-build-a-modal-with-javascript/ */
 #overlay {
   position: fixed;

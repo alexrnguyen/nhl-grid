@@ -1,22 +1,7 @@
-import { getPlayerId } from "@nhl-api/players";
-import nhlApi from "@nhl-api/client";
 import axios from "axios";
-const searchPlayer = async (playerName) => {
-  await fetch(`http://localhost:3000/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name: playerName }),
-  });
-  console.log("Response over!");
-  const request = await fetch(`http://localhost:3000/`);
-  let data = await request.json();
-  data = data[0];
-  console.log(data);
-
-  const playerId = Number(data.split("|")[0]);
-
+import { clearSearchResults } from "../ui/search-modal";
+const searchPlayer = async (playerId) => {
+  // TO-DO: Handle errors for this request
   const playerObject = await axios.get(
     `https://statsapi.web.nhl.com/api/v1/people/${playerId}`
   );
@@ -24,4 +9,21 @@ const searchPlayer = async (playerName) => {
   return player;
 };
 
-export { searchPlayer };
+const getSearchResults = async (playerName) => {
+  clearSearchResults();
+  // TO-DO: Handle errors for this request
+  await fetch(`http://localhost:3000/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name: playerName }),
+  });
+
+  // TO-DO: Handle errors for this request
+  const request = await fetch(`http://localhost:3000/`);
+  let data = await request.json();
+  return data;
+};
+
+export { searchPlayer, getSearchResults };

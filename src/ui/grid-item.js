@@ -10,6 +10,7 @@ const addPlayer = (gridItem, player) => {
   let teamId = 0;
   if (isActive) {
     teamId = player.currentTeam.id;
+    // TO-DO: Handle errors for this request
     axios
       .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
       .then((response) => response.data)
@@ -34,6 +35,8 @@ const getCol = (index) => {
 
 // Get th
 const getLatestImage = (playerImg, playerId) => {
+  // TO-DO: This function is a classic example of callback hell! Resolve ASAP!!!
+  // TO-DO: Handle errors for this request
   axios
     .get(
       `https://statsapi.web.nhl.com/api/v1/people/${playerId}/stats/?stats=yearByYear`
@@ -45,6 +48,7 @@ const getLatestImage = (playerImg, playerId) => {
       const teamId = lastYear.team.id;
       const teams = await getTeams();
       if (teams.includes(teamId)) {
+        // TO-DO: Handle errors for this request
         axios
           .get(`https://statsapi.web.nhl.com/api/v1/teams/${teamId}`)
           .then((response) => response.data)

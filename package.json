@@ -4,13 +4,15 @@
   "description": "",
   "main": "test.js",
   "scripts": {
+    "app": "webpack && node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
+    "server": "node src/server.js",
     "update-webpage": "git subtree push --prefix dist origin gh-pages",
     "start": "webpack serve --open",
     "build": "webpack"
   },
-  "author": "",
+  "author": "Alex Nguyen",
   "license": "ISC",
   "dependencies": {
     "@nhl-api/client": "^3.1.4",
@@ -28,6 +30,7 @@
     "html-webpack-plugin": "^5.5.3",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

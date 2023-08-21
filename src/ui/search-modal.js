@@ -1,7 +1,9 @@
 import { addPlayer } from "./grid-item";
-import { searchPlayer } from "../controllers/search-controller";
+import {
+  getSearchResults,
+  searchPlayer,
+} from "../controllers/search-controller";
 import { checkGameOver, checkPlayer } from "../controllers/game-controller";
-import { getPlayerId } from "@nhl-api/players";
 
 const createSearchModal = () => {
   const searchModal = document.createElement("div");
@@ -32,60 +34,86 @@ const createSearchModal = () => {
   searchInput.name = "search-player";
   searchInput.id = "search-player";
 
+  const playerItemsContainer = document.createElement("div");
+  playerItemsContainer.id = "player-items-container";
+
   searchModal.appendChild(headerContainer);
   searchModal.appendChild(searchInput);
+  searchModal.appendChild(playerItemsContainer);
   return searchModal;
 };
 
 const triggerSearchModal = (gridItem) => {
-  const index = gridItem.dataset.index;
   const searchModal = document.getElementById("search-modal");
   toggleModal(searchModal);
-
+  clearSearchResults();
   const team1 = gridItem.dataset.team1;
   const team2 = gridItem.dataset.team2;
   const header = document.getElementById("modal-header");
   header.textContent = `${team1}-${team2}`;
 
   const searchInput = document.getElementById("search-player");
-  searchInput.onkeydown = async (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const player = await searchPlayer(searchInput.value);
-      console.log(player);
-      const gridItem = document.querySelectorAll(".grid-item")[index];
-
-      const team1 = gridItem.dataset.team1;
-      const team2 = gridItem.dataset.team2;
-      const playedForBothTeams = await checkPlayer(team1, team2, player);
-      if (playedForBothTeams) {
-        addPlayer(gridItem, player);
-      } else {
-        console.log("Incorrect!");
-      }
-      document.getElementById("search-player").value = "";
-      toggleModal(searchModal);
-      checkGameOver();
-    }
-  };
-
   searchInput.oninput = async (event) => {
-    //updateSearchModal(searchInput.value);
+    const searchResults = await getSearchResults(searchInput.value);
+    searchResults.forEach((player) => {
+      const playerInfo = player.split("|");
+      const playerId = playerInfo[0];
+      const birthDate = playerInfo[10];
+      const name = `${playerInfo[2]} ${playerInfo[1]}`;
+      createPlayerItem(name, birthDate, playerId, gridItem);
+    });
   };
 };
 
-const updateSearchModal = async (searchInput) => {
-  let playerIds = getPlayerId(searchInput);
-  let playerNames = [];
-  if (typeof playerIds === "object") {
-    playerIds = playerIds.slice(0, 9);
-    playerIds.forEach((player) => playerNames.push(player.name));
+const onPlayerSelected = async (playerId, gridItem) => {
+  const searchModal = document.getElementById("search-modal");
+
+  const player = await searchPlayer(playerId);
+
+  const team1 = gridItem.dataset.team1;
+  const team2 = gridItem.dataset.team2;
+  const playedForBothTeams = await checkPlayer(team1, team2, player);
+  if (playedForBothTeams) {
+    addPlayer(gridItem, player);
   } else {
-    playerNames.push(searchInput);
+    console.log("Incorrect!");
   }
-  console.log(playerIds);
-  console.log(playerNames);
-  //const playerResults = await nhlApi.getPlayer({ id: playerIds });
+  document.getElementById("search-player").value = "";
+  toggleModal(searchModal);
+  checkGameOver();
+};
+
+const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
+  const playerItemsContainer = document.getElementById(
+    "player-items-container"
+  );
+
+  const playerItem = document.createElement("div");
+  playerItem.className = "player-item";
+
+  const playerNameElement = document.createElement("p");
+  playerNameElement.className = "player-result-name";
+  playerNameElement.textContent = playerName;
+  playerItem.appendChild(playerNameElement);
+
+  const birthDateElement = document.createElement("p");
+  birthDateElement.className = "birth-date";
+  birthDateElement.textContent = birthDate;
+  playerItem.appendChild(birthDateElement);
+
+  playerItem.addEventListener("click", () =>
+    onPlayerSelected(playerId, gridItem)
+  );
+
+  playerItemsContainer.appendChild(playerItem);
+};
+
+const clearSearchResults = () => {
+  // Clear previous search results
+  const playerItemsContainer = document.getElementById(
+    "player-items-container"
+  );
+  playerItemsContainer.innerHTML = "";
 };
 
 const toggleModal = (modal) => {
@@ -101,4 +129,10 @@ const createOverlay = () => {
   return overlay;
 };
 
-export { createSearchModal, triggerSearchModal, createOverlay };
+export {
+  createSearchModal,
+  triggerSearchModal,
+  createPlayerItem,
+  createOverlay,
+  clearSearchResults,
+};
