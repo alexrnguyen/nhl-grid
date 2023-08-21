@@ -12,7 +12,6 @@ node ./src/server.js
 
 ## Upcoming Features
 
-- Search results in search modal
 - Save game state when app is closed
 - Share a grid with friends
 - Rarity scores
@@ -21,10 +20,9 @@ node ./src/server.js
 
 - User must run server.js locally in order for the GET request for searchPlayer() to work as intended
 - If a retired player's last team is no longer active (eg. Quebec Nordiques), no image will be returned from getLatestImage()
-- Search input needs to be an exact match
 - Can use the same player more than once
 - Noticeable delay when first loading up application
-- No verification that a player exists that satisfies every possible team combination (especially problematic for the recent expansion teams)
+- No verification that a grid is solvable (due to Vegas and Seattle having relatively few players who have played for other teams)
 
 ## Acknowledgements
 
