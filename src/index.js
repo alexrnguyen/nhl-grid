@@ -14,13 +14,13 @@ const initializeGame = async () => {
   const grid = document.createElement("div");
   grid.id = "player-grid";
   content.appendChild(grid);
-  await createCategories("col");
-  await createCategories("row");
+  Promise.all([createCategories("col"), createCategories("row")]).then(() => {
+    for (let i = 0; i < 9; i++) {
+      createGridItem(i);
+    }
+  });
   document.body.appendChild(createSearchModal());
   document.body.appendChild(createOverlay());
-  for (let i = 0; i < 9; i++) {
-    createGridItem(i);
-  }
 
   const acknowledgement = document.createElement("footer");
   acknowledgement.textContent =
