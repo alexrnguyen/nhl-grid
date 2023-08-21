@@ -7,6 +7,7 @@ import { checkGameOver, checkPlayer } from "../controllers/game-controller";
 
 const createSearchModal = () => {
   const searchModal = document.createElement("div");
+  searchModal.className = "modal";
   searchModal.id = "search-modal";
   searchModal.classList.add("hidden");
 
@@ -17,7 +18,7 @@ const createSearchModal = () => {
   header.id = "modal-header";
 
   const closeButton = document.createElement("button");
-  closeButton.id = "close-modal";
+  closeButton.className = "close-modal";
   closeButton.textContent = "X";
 
   closeButton.addEventListener("click", () => {
@@ -135,4 +136,5 @@ export {
   createPlayerItem,
   createOverlay,
   clearSearchResults,
+  toggleModal,
 };

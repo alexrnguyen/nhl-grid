@@ -6,6 +6,7 @@ import {
 } from "./ui/search-modal";
 import { createCategories } from "./categories";
 import { getRow, getCol } from "./ui/grid-item";
+import { createWinnerModal } from "./ui/game-over-modal";
 
 const initializeGame = async () => {
   const content = document.createElement("div");
@@ -21,6 +22,7 @@ const initializeGame = async () => {
     createGridItem(i);
   }
   document.body.appendChild(createSearchModal());
+  document.body.appendChild(createWinnerModal());
   document.body.appendChild(createOverlay());
 
   const acknowledgement = document.createElement("footer");

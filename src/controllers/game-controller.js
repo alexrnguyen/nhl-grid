@@ -1,4 +1,5 @@
 import axios from "axios";
+import { triggerWinnerModal } from "../ui/game-over-modal";
 
 // Verify that a given player has played for both teams given as arguments
 const checkPlayer = async (team1, team2, player) => {
@@ -27,7 +28,7 @@ const checkPlayer = async (team1, team2, player) => {
 
 const checkGameOver = () => {
   if (allFilled()) {
-    console.log("You Win!");
+    triggerWinnerModal();
   }
 };
 

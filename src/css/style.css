@@ -99,7 +99,7 @@ footer {
 
 /* || Search Modal */
 
-#search-modal {
+.modal {
   background-color: white;
   position: absolute;
   top: 50%;
@@ -122,7 +122,7 @@ footer {
   place-self: center;
 }
 
-#close-modal {
+.close-modal {
   grid-column: 3;
   justify-self: end;
   width: 25px;
@@ -168,4 +168,8 @@ footer {
 
 .hidden {
   visibility: hidden;
+}
+
+#winner-text {
+  text-align: center;
 }

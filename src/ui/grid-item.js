@@ -47,6 +47,7 @@ const getLatestImage = (playerImg, playerId) => {
       const lastSeason = lastYear.season;
       const teamId = lastYear.team.id;
       const teams = await getTeams();
+      console.log(teamId);
       if (teams.includes(teamId)) {
         // TO-DO: Handle errors for this request
         axios
