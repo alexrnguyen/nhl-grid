@@ -17,7 +17,7 @@ const createCategories = async (axis) => {
 
 const randomCategory = async (category) => {
   const teamIds = await getTeams();
-  const randNum = Math.floor(Math.random() * 32);
+  const randNum = Math.floor(Math.random() * 30);
   const randomTeam = teamIds[randNum];
   category.src = `https://www-league.nhlstatic.com/images/logos/teams-current-primary-dark/${randomTeam}.svg`;
 
@@ -54,7 +54,13 @@ const getTeams = async () => {
   const teams = response.data.teams;
   let teamIds = [];
   teams.forEach((team) => {
-    teamIds.push(team.id);
+    // Do not add Seattle and Vegas to the array of valid team ids
+    if (
+      team.name !== "Seattle Kraken" &&
+      team.name !== "Vegas Golden Knights"
+    ) {
+      teamIds.push(team.id);
+    }
   });
   return teamIds;
 };
