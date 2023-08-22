@@ -149,9 +149,23 @@ footer {
 /* || Player Item */
 .player-item {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
 
+.player-result-left {
+  display: flex;
+  gap: 5px;
+}
+
+.result-submit-button {
+  align-self: center;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
+}
 /* Source: https://www.freecodecamp.org/news/how-to-build-a-modal-with-javascript/ */
 #overlay {
   position: fixed;

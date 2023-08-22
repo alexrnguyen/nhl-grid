@@ -1,9 +1,5 @@
-import { addPlayer } from "./grid-item";
-import {
-  getSearchResults,
-  searchPlayer,
-} from "../controllers/search-controller";
-import { checkGameOver, checkPlayer } from "../controllers/game-controller";
+import { getSearchResults } from "../controllers/search-controller";
+import createPlayerItem from "./player-result.item";
 
 const createSearchModal = () => {
   const searchModal = document.createElement("div");
@@ -54,6 +50,9 @@ const triggerSearchModal = (gridItem) => {
   header.textContent = `${team1}-${team2}`;
 
   const searchInput = document.getElementById("search-player");
+  const playerItemsContainer = document.getElementById(
+    "player-items-container"
+  );
   searchInput.oninput = async (event) => {
     const searchResults = await getSearchResults(searchInput.value);
     searchResults.forEach((player) => {
@@ -61,52 +60,11 @@ const triggerSearchModal = (gridItem) => {
       const playerId = playerInfo[0];
       const birthDate = playerInfo[10];
       const name = `${playerInfo[2]} ${playerInfo[1]}`;
-      createPlayerItem(name, birthDate, playerId, gridItem);
+      playerItemsContainer.appendChild(
+        createPlayerItem(name, birthDate, playerId, gridItem)
+      );
     });
   };
-};
-
-const onPlayerSelected = async (playerId, gridItem) => {
-  const searchModal = document.getElementById("search-modal");
-
-  const player = await searchPlayer(playerId);
-
-  const team1 = gridItem.dataset.team1;
-  const team2 = gridItem.dataset.team2;
-  const playedForBothTeams = await checkPlayer(team1, team2, player);
-  if (playedForBothTeams) {
-    addPlayer(gridItem, player);
-  } else {
-    console.log("Incorrect!");
-  }
-  document.getElementById("search-player").value = "";
-  toggleModal(searchModal);
-  checkGameOver();
-};
-
-const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
-  const playerItemsContainer = document.getElementById(
-    "player-items-container"
-  );
-
-  const playerItem = document.createElement("div");
-  playerItem.className = "player-item";
-
-  const playerNameElement = document.createElement("p");
-  playerNameElement.className = "player-result-name";
-  playerNameElement.textContent = playerName;
-  playerItem.appendChild(playerNameElement);
-
-  const birthDateElement = document.createElement("p");
-  birthDateElement.className = "birth-date";
-  birthDateElement.textContent = birthDate;
-  playerItem.appendChild(birthDateElement);
-
-  playerItem.addEventListener("click", () =>
-    onPlayerSelected(playerId, gridItem)
-  );
-
-  playerItemsContainer.appendChild(playerItem);
 };
 
 const clearSearchResults = () => {

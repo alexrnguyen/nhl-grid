@@ -21,6 +21,9 @@ const checkPlayer = async (team1, team2, player) => {
   if (playedForTeam1 && playedForTeam2 && !checkIfPlayerUsed(player.fullName)) {
     return true;
   } else {
+    if (!playedForTeam1 || !playedForTeam2) {
+      window.alert("Incorrect");
+    }
     return false;
   }
 };
