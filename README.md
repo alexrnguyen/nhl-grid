@@ -5,10 +5,7 @@ An NHL trivia game where users must name a player that played for the teams give
 ## Setup
 Since this app is hosted on a static webpage (through GitHub Pages), the user must run the server on their machine to allow the app to access the suggestions API (used when searching for a player). The following steps must be taken to setup the server.
 
-1. Clone this repository to create a local repository on your computer
-```sh
-git clone https://github.com/alexrnguyen/nhl-grid.git
-```
+1. Fork this repository to create a local copy on your computer
 
 2. Install all dependencies needed to run nhl-grid
 ```sh
