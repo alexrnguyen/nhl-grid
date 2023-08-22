@@ -15,6 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: path.resolve(__dirname, "dist/icons8-hockey-64.png"),
       template: "./src/index.html",
     }),
   ],
@@ -27,6 +28,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+        use: ["file-loader?name=[name].[ext]"],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,

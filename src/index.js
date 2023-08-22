@@ -7,6 +7,7 @@ import {
 import { createCategories } from "./categories";
 import { getRow, getCol } from "./ui/grid-item";
 import { createWinnerModal } from "./ui/game-over-modal";
+import "./assets/icons8-hockey-64.png";
 
 const initializeGame = async () => {
   const content = document.createElement("div");
