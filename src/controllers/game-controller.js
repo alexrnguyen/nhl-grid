@@ -7,7 +7,7 @@ const checkPlayer = async (team1, team2, player) => {
 
   const team1Name = abbreviationToTeamMap[team1];
   const team2Name = abbreviationToTeamMap[team2];
-  const teams = await getPlayerTeams(team1, team2, player);
+  const teams = await getPlayerTeams(player);
 
   let playedForTeam1 = false;
   let playedForTeam2 = false;
@@ -18,8 +18,7 @@ const checkPlayer = async (team1, team2, player) => {
       playedForTeam2 = true;
     }
   }
-  console.log(playedForTeam1, playedForTeam2);
-  if (playedForTeam1 && playedForTeam2) {
+  if (playedForTeam1 && playedForTeam2 && !checkIfPlayerUsed(player.fullName)) {
     return true;
   } else {
     return false;
@@ -40,7 +39,7 @@ const allFilled = () => {
 };
 
 // Retrieve list of all teams a player has played for
-const getPlayerTeams = async (team1, team2, player) => {
+const getPlayerTeams = async (player) => {
   const playerId = player.id;
   let allTeams = [];
   await axios
@@ -57,6 +56,23 @@ const getPlayerTeams = async (team1, team2, player) => {
 
   let distinctTeams = [...new Set(allTeams)];
   return distinctTeams;
+};
+
+const checkIfPlayerUsed = (player) => {
+  const playersUsed = document.querySelectorAll(".player-name");
+  const namesOfPlayers = [];
+
+  playersUsed.forEach((player) => {
+    if (player.textContent !== "") {
+      namesOfPlayers.push(player.textContent);
+    }
+  });
+  if (namesOfPlayers.includes(player)) {
+    window.alert(`You have already used ${player}!`);
+    return true;
+  } else {
+    return false;
+  }
 };
 
 // Generates a map that maps every team abbreviation to a team name
