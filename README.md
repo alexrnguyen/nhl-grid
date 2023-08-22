@@ -32,7 +32,6 @@ npm run server
 
 - User must run server.js locally in order for the GET request for searchPlayer() to work as intended
 - If a retired player's last team is no longer active (eg. Quebec Nordiques), no image will be returned from getLatestImage()
-- Players sometimes show up more than once in the search results
 - Noticeable delay when first loading up application
 - No verification that a grid is solvable (due to Vegas and Seattle having relatively few players who have played for other teams)
 

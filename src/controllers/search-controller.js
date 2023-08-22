@@ -10,7 +10,6 @@ const searchPlayer = async (playerId) => {
 };
 
 const getSearchResults = async (playerName) => {
-  clearSearchResults();
   // TO-DO: Handle errors for this request
   await fetch(`http://localhost:3000/`, {
     method: "POST",
@@ -19,10 +18,10 @@ const getSearchResults = async (playerName) => {
     },
     body: JSON.stringify({ name: playerName }),
   });
-
   // TO-DO: Handle errors for this request
   const request = await fetch(`http://localhost:3000/`);
   let data = await request.json();
+  clearSearchResults();
   return data;
 };
 
