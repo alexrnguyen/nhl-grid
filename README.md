@@ -3,12 +3,24 @@
 An NHL trivia game where users must name a player that played for the teams given on each row and column. Inspired by similar games including [NHL Grid](https://www.nhlgrid.com/), [Puckdoku](https://www.puckdoku.com/), and [Immaculate Grid](https://www.immaculategrid.com/hockey).
 
 ## Run Server Locally
+Since this app is hosted on a static webpage (through GitHub Pages), the user must run the server on their machine to allow the app to access the suggestions API (used when searching for a player). The following steps must be taken to setup the server.
 
-This app currently requires the user to run a server on their machine to allow the app to access the suggestions API (used when searching for a player). Below is the command needed to run the server.
-
+1. Clone this repository to create a local repository on your computer
 ```sh
-node ./src/server.js
+git clone https://github.com/alexrnguyen/nhl-grid.git
 ```
+
+2. Install all dependencies needed to run nhl-grid
+```sh
+npm install
+```
+
+3. Inside the project directory, start up the server using the following command
+```sh
+npm run server
+```
+
+4. Open the static webpage using the link on this repository. Have fun!
 
 ## Upcoming Features
 
