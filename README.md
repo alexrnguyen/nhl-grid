@@ -2,7 +2,7 @@
 
 An NHL trivia game where users must name a player that played for the teams given on each row and column. Inspired by similar games including [NHL Grid](https://www.nhlgrid.com/), [Puckdoku](https://www.puckdoku.com/), and [Immaculate Grid](https://www.immaculategrid.com/hockey).
 
-## Run Server Locally
+## Setup
 Since this app is hosted on a static webpage (through GitHub Pages), the user must run the server on their machine to allow the app to access the suggestions API (used when searching for a player). The following steps must be taken to setup the server.
 
 1. Clone this repository to create a local repository on your computer
