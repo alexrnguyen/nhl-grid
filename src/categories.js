@@ -30,6 +30,7 @@ const randomCategory = async (category) => {
   if (checkCategories(teamAbbreviation)) {
     category.dataset.team = teamAbbreviation;
   } else {
+    // Category chosen is an inactive team. Choose another category
     await randomCategory(category);
   }
 };

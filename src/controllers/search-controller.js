@@ -11,7 +11,7 @@ const searchPlayer = async (playerId) => {
 
 const getSearchResults = async (playerName) => {
   // TO-DO: Handle errors for this request
-  await fetch(`http://localhost:3000/`, {
+  await fetch(`/api/search-player`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ const getSearchResults = async (playerName) => {
     body: JSON.stringify({ name: playerName }),
   });
   // TO-DO: Handle errors for this request
-  const request = await fetch(`http://localhost:3000/`);
+  const request = await fetch(`/api/get-player`);
   let data = await request.json();
   clearSearchResults();
   return data;
