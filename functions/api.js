@@ -23,6 +23,6 @@ router.post("/get-player", (req, res) => {
   res.end();
 });
 
-api.use("/api/", router);
+api.use("/.netlify/functions/api/", router);
 
 export const handler = serverless(api);
