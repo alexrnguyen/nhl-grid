@@ -9,7 +9,7 @@
     "watch": "webpack --watch",
     "server": "node src/server.js",
     "update-webpage": "git subtree push --prefix dist origin gh-pages",
-    "start": "webpack serve --open",
+    "start": "netlify dev",
     "build": "webpack"
   },
   "author": "Alex Nguyen",

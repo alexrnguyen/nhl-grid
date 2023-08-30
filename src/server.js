@@ -1,16 +1,16 @@
+import express, { Router } from "express";
+import serverless from "serverless-http";
 const { default: axios } = require("axios");
-const express = require("express");
-const app = express();
 const cors = require("cors");
 
-// Source: https://stackoverflow.com/questions/45975135/access-control-origin-header-error-using-axios
-app.use(cors());
-app.use(express.json());
+const api = express();
+api.use(cors());
+api.use(express.json());
+
+const router = Router();
 
 let formattedName = "";
-const PORT = process.env.PORT || 3000;
-
-app.get("/", async function (req, res) {
+router.get("/search-player", async (req, res) => {
   // TO-DO: Handle errors for this request
   const response = await axios.get(
     `https://suggest.svc.nhl.com/svc/suggest/v1/minplayers/${formattedName}`
@@ -19,12 +19,12 @@ app.get("/", async function (req, res) {
   res.send(await response.data.suggestions);
 });
 
-app.post("/", (req, res) => {
+router.post("/get-player", (req, res) => {
   console.log(req.body);
   formattedName = req.body.name;
   res.end();
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+api.use("/api/", router);
+
+export const handler = serverless(api);
