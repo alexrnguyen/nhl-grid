@@ -1,10 +1,8 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
 const { default: axios } = require("axios");
-const cors = require("cors");
 
 const api = express();
-api.use(cors());
 api.use(express.json());
 
 const router = Router();
