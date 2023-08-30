@@ -10,7 +10,7 @@ api.use(express.json());
 const router = Router();
 
 let formattedName = "";
-router.get("/search-player", async (req, res) => {
+router.get("/api/search-player", async (req, res) => {
   // TO-DO: Handle errors for this request
   const response = await axios.get(
     `https://suggest.svc.nhl.com/svc/suggest/v1/minplayers/${formattedName}`
@@ -19,7 +19,7 @@ router.get("/search-player", async (req, res) => {
   res.send(await response.data.suggestions);
 });
 
-router.post("/get-player", (req, res) => {
+router.post("/api/get-player", (req, res) => {
   console.log(req.body);
   formattedName = req.body.name;
   res.end();
