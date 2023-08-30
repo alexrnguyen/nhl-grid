@@ -2,25 +2,7 @@
 
 An NHL trivia game in which users must name a player that played for the teams given on each row and column of a grid. Inspired by similar games including [NHL Grid](https://www.nhlgrid.com/), [Puckdoku](https://www.puckdoku.com/), and [Immaculate Grid](https://www.immaculategrid.com/hockey).
 
-## Setup
-
-Since this app is hosted on a static webpage (through GitHub Pages), the user must run the server on their machine to allow the app to access the suggestions API (used when searching for a player). The following steps must be taken to setup the server.
-
-1. Fork this repository to create a local copy on your computer
-
-2. Install all dependencies needed to run nhl-grid
-
-```sh
-npm install
-```
-
-3. Inside the project directory, start up the server using the following command
-
-```sh
-npm run server
-```
-
-4. Open the static webpage using the link on this repository. Have fun!
+[Live Preview](https://nhlgrid.netlify.app)
 
 ## Upcoming Features
 
@@ -30,7 +12,6 @@ npm run server
 
 ## Outstanding Issues
 
-- User must run server.js locally in order for the GET request for searchPlayer() to work as intended
 - If a retired player's last team is no longer active (eg. Quebec Nordiques), no image will be returned from getLatestImage()
 - Noticeable delay when first loading up application
 - No verification that a grid is solvable (due to Vegas and Seattle having relatively few players who have played for other teams)
