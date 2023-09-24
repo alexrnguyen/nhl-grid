@@ -19,15 +19,7 @@ const getBirthDate = async (playerId) => {
 
 const getSearchResults = async (playerName) => {
   // TO-DO: Handle errors for this request
-  /*await fetch(`/api/search-player`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name: playerName }),
-  });*/
-  // TO-DO: Handle errors for this request
-  const response = await fetch(`/api/get-player/${playerName}`);
+  const response = await fetch(`/api/player/${playerName}`);
   let data = await response.json();
   clearSearchResults();
   return data;
