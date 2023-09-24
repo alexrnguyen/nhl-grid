@@ -1,6 +1,5 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
-const { default: axios } = require("axios");
 
 const api = express();
 api.use(express.json());
@@ -10,7 +9,7 @@ const router = Router();
 let formattedName = "";
 router.get("/get-player", async (req, res) => {
   // TO-DO: Handle errors for this request
-  const response = await axios.get(
+  const response = await fetch(
     `https://search.d3.nhle.com/api/v1/search/player?culture=en-us&limit=20&q=${formattedName}`
   );
 
