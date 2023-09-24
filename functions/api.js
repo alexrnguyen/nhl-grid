@@ -11,10 +11,11 @@ let formattedName = "";
 router.get("/get-player", async (req, res) => {
   // TO-DO: Handle errors for this request
   const response = await axios.get(
-    `https://suggest.svc.nhl.com/svc/suggest/v1/minplayers/${formattedName}`
+    `https://search.d3.nhle.com/api/v1/search/player?culture=en-us&limit=20&q=${formattedName}`
   );
-  console.log(await response.data.suggestions);
-  res.send(await response.data.suggestions);
+
+  const data = await response.json();
+  res.send(data);
 });
 
 router.post("/search-player", (req, res) => {

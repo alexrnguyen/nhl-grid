@@ -56,12 +56,11 @@ const triggerSearchModal = (gridItem) => {
   searchInput.oninput = async (event) => {
     const searchResults = await getSearchResults(searchInput.value);
     searchResults.forEach((player) => {
-      const playerInfo = player.split("|");
-      const playerId = playerInfo[0];
-      const birthDate = playerInfo[10];
-      const name = `${playerInfo[2]} ${playerInfo[1]}`;
+      const playerId = Number(player["playerId"]);
+      //const birthDate = playerInfo[10];
+      const name = player["name"];
       playerItemsContainer.appendChild(
-        createPlayerItem(name, birthDate, playerId, gridItem)
+        createPlayerItem(name, "birthDate", playerId, gridItem)
       );
     });
   };
