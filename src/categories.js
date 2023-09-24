@@ -19,7 +19,6 @@ const randomCategory = async (category) => {
   const teamIds = await getTeams();
   const randNum = Math.floor(Math.random() * 30);
   const randomTeam = teamIds[randNum];
-  category.src = `https://www-league.nhlstatic.com/images/logos/teams-current-primary-dark/${randomTeam}.svg`;
 
   // Get the team's abbreviation and store it in the category's dataset
   const response = await axios.get(
@@ -29,6 +28,7 @@ const randomCategory = async (category) => {
   const teamAbbreviation = response.data.teams[0].abbreviation;
   if (checkCategories(teamAbbreviation)) {
     category.dataset.team = teamAbbreviation;
+    category.src = `https://assets.nhle.com/logos/nhl/svg/${teamAbbreviation}_dark.svg`;
   } else {
     // Category chosen is an inactive team. Choose another category
     await randomCategory(category);
