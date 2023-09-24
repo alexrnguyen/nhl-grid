@@ -1,4 +1,7 @@
-import { getSearchResults } from "../controllers/search-controller";
+import {
+  getBirthDate,
+  getSearchResults,
+} from "../controllers/search-controller";
 import createPlayerItem from "./player-result.item";
 
 const createSearchModal = () => {
@@ -55,9 +58,9 @@ const triggerSearchModal = (gridItem) => {
   );
   searchInput.oninput = async (event) => {
     const searchResults = await getSearchResults(searchInput.value);
-    searchResults.forEach((player) => {
+    searchResults.forEach(async (player) => {
       const playerId = Number(player["playerId"]);
-      //const birthDate = playerInfo[10];
+      const birthDate = await getBirthDate(playerId);
       const name = player["name"];
       playerItemsContainer.appendChild(
         createPlayerItem(name, "birthDate", playerId, gridItem)

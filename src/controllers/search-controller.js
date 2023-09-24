@@ -9,6 +9,14 @@ const searchPlayer = async (playerId) => {
   return player;
 };
 
+const getBirthDate = async (playerId) => {
+  const playerObject = await axios.get(
+    `https://statsapi.web.nhl.com/api/v1/people/${playerId}`
+  );
+  const birthDate = playerObject.data.people[0].birthDate;
+  return birthDate;
+};
+
 const getSearchResults = async (playerName) => {
   // TO-DO: Handle errors for this request
   await fetch(`/api/search-player`, {
@@ -25,4 +33,4 @@ const getSearchResults = async (playerName) => {
   return data;
 };
 
-export { searchPlayer, getSearchResults };
+export { searchPlayer, getBirthDate, getSearchResults };
