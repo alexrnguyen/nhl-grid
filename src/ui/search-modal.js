@@ -63,7 +63,7 @@ const triggerSearchModal = (gridItem) => {
       const birthDate = await getBirthDate(playerId);
       const name = player["name"];
       playerItemsContainer.appendChild(
-        createPlayerItem(name, "birthDate", playerId, gridItem)
+        createPlayerItem(name, birthDate, playerId, gridItem)
       );
     });
   };
