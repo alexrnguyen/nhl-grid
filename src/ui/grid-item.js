@@ -1,6 +1,3 @@
-import axios from "axios";
-import { getTeams } from "../categories";
-
 const addPlayer = (gridItem, player) => {
   gridItem.classList.add("correct");
   const gridItemChildren = Array.from(gridItem.childNodes);
