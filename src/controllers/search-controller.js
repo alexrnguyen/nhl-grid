@@ -3,17 +3,17 @@ import { clearSearchResults } from "../ui/search-modal";
 const searchPlayer = async (playerId) => {
   // TO-DO: Handle errors for this request
   const playerObject = await axios.get(
-    `https://statsapi.web.nhl.com/api/v1/people/${playerId}`
+    `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
-  const player = playerObject.data.people[0];
+  const player = playerObject.data;
   return player;
 };
 
 const getBirthDate = async (playerId) => {
   const playerObject = await axios.get(
-    `https://statsapi.web.nhl.com/api/v1/people/${playerId}`
+    `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
-  const birthDate = playerObject.data.people[0].birthDate;
+  const birthDate = playerObject.data.birthDate;
   return birthDate;
 };
 

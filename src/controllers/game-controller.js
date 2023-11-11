@@ -46,14 +46,12 @@ const getPlayerTeams = async (player) => {
   const playerId = player.id;
   let allTeams = [];
   await axios
-    .get(
-      `https://statsapi.web.nhl.com/api/v1/people/${playerId}/stats/?stats=yearByYear`
-    )
+    .get(`https://api-web.nhle.com/v1/player/${playerId}/landing`)
     .then((response) => response.data)
     .then((data) => {
-      const splits = data.stats[0].splits;
-      Array.from(splits).forEach((season) => {
-        allTeams.push(season.team.name);
+      const seasonTotals = data.seasonTotals;
+      Array.from(seasonTotals).forEach((season) => {
+        allTeams.push(season.teamName.default);
       });
     });
 
@@ -81,38 +79,38 @@ const checkIfPlayerUsed = (player) => {
 // Generates a map that maps every team abbreviation to a team name
 const generateAbbreviationMap = () => {
   const abbreviationToTeamMap = new Map();
-  abbreviationToTeamMap["ANA"] = "Anaheim Ducks";
-  abbreviationToTeamMap["ARI"] = "Arizona Coyotes";
-  abbreviationToTeamMap["BOS"] = "Boston Bruins";
-  abbreviationToTeamMap["BUF"] = "Buffalo Sabres";
-  abbreviationToTeamMap["CAR"] = "Carolina Hurricanes";
-  abbreviationToTeamMap["CBJ"] = "Columbus Blue Jackets";
-  abbreviationToTeamMap["CGY"] = "Calgary Flames";
-  abbreviationToTeamMap["CHI"] = "Chicago Blackhawks";
-  abbreviationToTeamMap["COL"] = "Colorado Avalanche";
-  abbreviationToTeamMap["DAL"] = "Dallas Stars";
-  abbreviationToTeamMap["DET"] = "Detroit Red Wings";
-  abbreviationToTeamMap["EDM"] = "Edmonton Oilers";
-  abbreviationToTeamMap["FLA"] = "Florida Panthers";
-  abbreviationToTeamMap["LAK"] = "Los Angeles Kings";
-  abbreviationToTeamMap["MIN"] = "Minnesota Wild";
-  abbreviationToTeamMap["MTL"] = "Montréal Canadiens";
-  abbreviationToTeamMap["NJD"] = "New Jersey Devils";
-  abbreviationToTeamMap["NSH"] = "Nashville Predators";
-  abbreviationToTeamMap["NYI"] = "New York Islanders";
-  abbreviationToTeamMap["NYR"] = "New York Rangers";
-  abbreviationToTeamMap["OTT"] = "Ottawa Senators";
-  abbreviationToTeamMap["PHI"] = "Philadelphia Flyers";
-  abbreviationToTeamMap["PIT"] = "Pittsburgh Penguins";
-  abbreviationToTeamMap["SEA"] = "Seattle Kraken";
-  abbreviationToTeamMap["SJS"] = "San Jose Sharks";
-  abbreviationToTeamMap["STL"] = "St. Louis Blues";
-  abbreviationToTeamMap["TBL"] = "Tampa Bay Lightning";
-  abbreviationToTeamMap["TOR"] = "Toronto Maple Leafs";
-  abbreviationToTeamMap["VAN"] = "Vancouver Canucks";
-  abbreviationToTeamMap["VGK"] = "Vegas Golden Knights";
-  abbreviationToTeamMap["WPG"] = "Winnipeg Jets";
-  abbreviationToTeamMap["WSH"] = "Washington Capitals";
+  abbreviationToTeamMap["ANA"] = "Ducks";
+  abbreviationToTeamMap["ARI"] = "Coyotes";
+  abbreviationToTeamMap["BOS"] = "Bruins";
+  abbreviationToTeamMap["BUF"] = "Sabres";
+  abbreviationToTeamMap["CAR"] = "Hurricanes";
+  abbreviationToTeamMap["CBJ"] = "Blue Jackets";
+  abbreviationToTeamMap["CGY"] = "Flames";
+  abbreviationToTeamMap["CHI"] = "Blackhawks";
+  abbreviationToTeamMap["COL"] = "Avalanche";
+  abbreviationToTeamMap["DAL"] = "Stars";
+  abbreviationToTeamMap["DET"] = "Red Wings";
+  abbreviationToTeamMap["EDM"] = "Oilers";
+  abbreviationToTeamMap["FLA"] = "Panthers";
+  abbreviationToTeamMap["LAK"] = "Kings";
+  abbreviationToTeamMap["MIN"] = "Wild";
+  abbreviationToTeamMap["MTL"] = "Canadiens";
+  abbreviationToTeamMap["NJD"] = "Devils";
+  abbreviationToTeamMap["NSH"] = "Predators";
+  abbreviationToTeamMap["NYI"] = "Islanders";
+  abbreviationToTeamMap["NYR"] = "Rangers";
+  abbreviationToTeamMap["OTT"] = "Senators";
+  abbreviationToTeamMap["PHI"] = "Flyers";
+  abbreviationToTeamMap["PIT"] = "Penguins";
+  abbreviationToTeamMap["SEA"] = "Kraken";
+  abbreviationToTeamMap["SJS"] = "Sharks";
+  abbreviationToTeamMap["STL"] = "Blues";
+  abbreviationToTeamMap["TBL"] = "Lightning";
+  abbreviationToTeamMap["TOR"] = "Leafs";
+  abbreviationToTeamMap["VAN"] = "Canucks";
+  abbreviationToTeamMap["VGK"] = "Golden Knights";
+  abbreviationToTeamMap["WPG"] = "Jets";
+  abbreviationToTeamMap["WSH"] = "Capitals";
   return abbreviationToTeamMap;
 };
 
