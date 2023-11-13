@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
+import { generateAbbreviationMap } from "../src/controllers/game-controller";
 
 const api = express();
 api.use(express.json());
@@ -11,7 +12,7 @@ router.get("/player/:playerName", async (req, res) => {
   const playerName = req.params.playerName;
   // TO-DO: Handle errors for this request
   const response = await fetch(
-    `https://search.d3.nhle.com/api/v1/search/player?culture=en-us&limit=20&q=${req.params.playerName}`
+    `https://search.d3.nhle.com/api/v1/search/player?culture=en-us&limit=20&q=${playerName}`
   );
 
   const data = await response.json();
