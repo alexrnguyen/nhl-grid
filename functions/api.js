@@ -42,7 +42,7 @@ router.get("/player/teams/:id", async (req, res) => {
 });
 
 router.get("/teams", async (req, res) => {
-  const response = await axios.get("https://api.nhle.com/stats/rest/en/team");
+  const response = await fetch("https://api.nhle.com/stats/rest/en/team");
   const teams = response.data;
   const abbreviationToTeamMap = generateAbbreviationMap();
   let teamsAbbreviations = [];
