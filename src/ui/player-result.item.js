@@ -34,8 +34,7 @@ const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
 
 const onPlayerSelected = async (playerId, gridItem) => {
   const searchModal = document.getElementById("search-modal");
-  const playerResponse = await fetch(`/api/player/${playerId}`);
-  const player = await playerResponse.json();
+  const player = await fetch(`/api/player/${playerId}`);
   console.log(player);
 
   const team1 = gridItem.dataset.team1;
