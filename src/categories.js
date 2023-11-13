@@ -17,7 +17,6 @@ const createCategories = async (axis) => {
 const randomCategory = async (category) => {
   const response = await fetch("/api/teams");
   const teamAbbreviations = await response.json();
-  console.log(teamAbbreviations);
   // Get a random team's abbreviation and store it in the category's dataset
   const randNum = Math.floor(Math.random() * 30);
   const randomTeam = teamAbbreviations[randNum];

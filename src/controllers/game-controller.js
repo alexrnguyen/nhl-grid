@@ -7,7 +7,8 @@ const checkPlayer = async (team1, team2, player) => {
 
   const team1Name = abbreviationToTeamMap[team1];
   const team2Name = abbreviationToTeamMap[team2];
-  const teams = await fetch(`/api/player/teams/${player.playerId}`);
+  const teamsResponse = await fetch(`/api/player/teams/${player.playerId}`);
+  const teams = await teamsResponse.json();
 
   let playedForTeam1 = false;
   let playedForTeam2 = false;

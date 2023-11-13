@@ -57,7 +57,8 @@ const triggerSearchModal = (gridItem) => {
     const searchResults = await getSearchResults(searchInput.value);
     searchResults.forEach(async (player) => {
       const playerId = Number(player["playerId"]);
-      const playerData = await fetch(`/api/player/${playerId}`);
+      const playerResponse = await fetch(`/api/player/${playerId}`);
+      const playerData = await playerResponse.json();
       const birthDate = playerData.birthDate;
       const name = player["name"];
       playerItemsContainer.appendChild(
