@@ -48,8 +48,6 @@ router.get("/teams", async (req, res) => {
   const response = await fetch("https://api.nhle.com/stats/rest/en/team");
   const data = await response.json();
   const teams = data.data;
-  console.log(data);
-  console.log(teams);
   const abbreviationToTeamMap = generateAbbreviationMap();
   let teamsAbbreviations = [];
   teams.forEach((team) => {
