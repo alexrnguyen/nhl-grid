@@ -17,10 +17,11 @@ const createCategories = async (axis) => {
 };
 
 const randomCategory = async (category) => {
-  const teamsAbbreviations = await getTeams();
+  const teamAbbreviations = await fetch("/api/teams");
+  console.log(teamAbbreviations);
   // Get a random team's abbreviation and store it in the category's dataset
   const randNum = Math.floor(Math.random() * 30);
-  const randomTeam = teamsAbbreviations[randNum];
+  const randomTeam = teamAbbreviations[randNum];
 
   const teamAbbreviation = randomTeam;
   if (checkCategories(teamAbbreviation)) {
@@ -44,17 +45,4 @@ const checkCategories = (teamAbbreviation) => {
   return validCategory;
 };
 
-const getTeams = async () => {
-  const response = await axios.get("https://api.nhle.com/stats/rest/en/team");
-  const teams = response.data;
-  const abbreviationToTeamMap = generateAbbreviationMap();
-  let teamsAbbreviations = [];
-  teams.forEach((team) => {
-    if (abbreviationToTeamMap.keys().includes(team.triCode)) {
-      teamsAbbreviations.push(team.triCode);
-    }
-  });
-  return teams;
-};
-
-export { createCategories, getTeams };
+export { createCategories };

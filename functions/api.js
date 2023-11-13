@@ -14,7 +14,20 @@ router.get("/player/:playerName", async (req, res) => {
   );
 
   const data = await response.json();
-  res.send(data);
+  res.status(200).send(data);
+});
+
+router.get("/teams", async (req, res) => {
+  const response = await axios.get("https://api.nhle.com/stats/rest/en/team");
+  const teams = response.data;
+  const abbreviationToTeamMap = generateAbbreviationMap();
+  let teamsAbbreviations = [];
+  teams.forEach((team) => {
+    if (abbreviationToTeamMap.keys().includes(team.triCode)) {
+      teamsAbbreviations.push(team.triCode);
+    }
+  });
+  res.status(200).send(teamsAbbreviations);
 });
 
 api.use("/api/", router);
