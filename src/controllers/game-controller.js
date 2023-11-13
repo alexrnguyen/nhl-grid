@@ -102,16 +102,16 @@ const generateAbbreviationMap = () => {
   abbreviationToTeamMap["OTT"] = "Senators";
   abbreviationToTeamMap["PHI"] = "Flyers";
   abbreviationToTeamMap["PIT"] = "Penguins";
-  abbreviationToTeamMap["SEA"] = "Kraken";
+  // abbreviationToTeamMap["SEA"] = "Kraken";
   abbreviationToTeamMap["SJS"] = "Sharks";
   abbreviationToTeamMap["STL"] = "Blues";
   abbreviationToTeamMap["TBL"] = "Lightning";
   abbreviationToTeamMap["TOR"] = "Leafs";
   abbreviationToTeamMap["VAN"] = "Canucks";
-  abbreviationToTeamMap["VGK"] = "Golden Knights";
+  // abbreviationToTeamMap["VGK"] = "Golden Knights";
   abbreviationToTeamMap["WPG"] = "Jets";
   abbreviationToTeamMap["WSH"] = "Capitals";
   return abbreviationToTeamMap;
 };
 
-export { checkPlayer, checkGameOver };
+export { checkPlayer, checkGameOver, generateAbbreviationMap };

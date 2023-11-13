@@ -1,4 +1,5 @@
 import axios from "axios";
+import { generateAbbreviationMap } from "./controllers/game-controller";
 const createCategories = async (axis) => {
   const categories = document.createElement("div");
   categories.id = `${axis}-categories`;
@@ -16,16 +17,12 @@ const createCategories = async (axis) => {
 };
 
 const randomCategory = async (category) => {
-  const teamIds = await getTeams();
+  const teamsAbbreviations = await getTeams();
+  // Get a random team's abbreviation and store it in the category's dataset
   const randNum = Math.floor(Math.random() * 30);
-  const randomTeam = teamIds[randNum];
+  const randomTeam = teamsAbbreviations[randNum];
 
-  // Get the team's abbreviation and store it in the category's dataset
-  const response = await axios.get(
-    `https://statsapi.web.nhl.com/api/v1/teams/${randomTeam}`
-  );
-
-  const teamAbbreviation = response.data.teams[0].abbreviation;
+  const teamAbbreviation = randomTeam;
   if (checkCategories(teamAbbreviation)) {
     category.dataset.team = teamAbbreviation;
     category.src = `https://assets.nhle.com/logos/nhl/svg/${teamAbbreviation}_dark.svg`;
@@ -48,22 +45,16 @@ const checkCategories = (teamAbbreviation) => {
 };
 
 const getTeams = async () => {
-  const response = await axios.get(
-    "https://statsapi.web.nhl.com/api/v1/teams/"
-  );
-
-  const teams = response.data.teams;
-  let teamIds = [];
+  const response = await axios.get("https://api.nhle.com/stats/rest/en/team");
+  const teams = response.data;
+  const abbreviationToTeamMap = generateAbbreviationMap();
+  let teamsAbbreviations = [];
   teams.forEach((team) => {
-    // Do not add Seattle and Vegas to the array of valid team ids
-    if (
-      team.name !== "Seattle Kraken" &&
-      team.name !== "Vegas Golden Knights"
-    ) {
-      teamIds.push(team.id);
+    if (abbreviationToTeamMap.keys().includes(team.triCode)) {
+      teamsAbbreviations.push(team.triCode);
     }
   });
-  return teamIds;
+  return teams;
 };
 
 export { createCategories, getTeams };
