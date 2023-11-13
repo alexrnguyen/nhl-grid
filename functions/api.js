@@ -24,7 +24,8 @@ router.get("/player/:id", async (req, res) => {
   const playerObject = await fetch(
     `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
-  res.status(200).send(playerObject.data);
+  const playerData = await playerObject.json();
+  res.status(200).send(playerData);
 });
 
 router.get("/player/teams/:id", async (req, res) => {
@@ -33,8 +34,9 @@ router.get("/player/teams/:id", async (req, res) => {
   const playerObject = await fetch(
     `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
+  const playerData = await playerObject.json();
 
-  const seasonTotals = playerObject.data.seasonTotals;
+  const seasonTotals = playerData.data.seasonTotals;
   Array.from(seasonTotals).forEach((season) => {
     allTeams.push(season.teamName.default);
   });
@@ -44,7 +46,8 @@ router.get("/player/teams/:id", async (req, res) => {
 
 router.get("/teams", async (req, res) => {
   const response = await fetch("https://api.nhle.com/stats/rest/en/team");
-  const teams = response.data;
+  const data = await response.json();
+  const teams = data.data;
   const abbreviationToTeamMap = generateAbbreviationMap();
   let teamsAbbreviations = [];
   teams.forEach((team) => {
