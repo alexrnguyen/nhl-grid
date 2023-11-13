@@ -1,4 +1,3 @@
-import { searchPlayer } from "../controllers/search-controller";
 import { addPlayer } from "./grid-item";
 import { toggleModal } from "./search-modal";
 import { checkPlayer, checkGameOver } from "../controllers/game-controller";
@@ -35,7 +34,7 @@ const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
 
 const onPlayerSelected = async (playerId, gridItem) => {
   const searchModal = document.getElementById("search-modal");
-  const player = await searchPlayer(playerId);
+  const player = await fetch(`/api/player/${playerId}`);
 
   const team1 = gridItem.dataset.team1;
   const team2 = gridItem.dataset.team2;

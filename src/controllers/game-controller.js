@@ -7,7 +7,7 @@ const checkPlayer = async (team1, team2, player) => {
 
   const team1Name = abbreviationToTeamMap[team1];
   const team2Name = abbreviationToTeamMap[team2];
-  const teams = await getPlayerTeams(player);
+  const teams = await fetch(`/api/player/teams/${player.playerId}`);
 
   let playedForTeam1 = false;
   let playedForTeam2 = false;
@@ -39,24 +39,6 @@ const allFilled = () => {
   return Array.from(allGridItems).every((gridItem) =>
     gridItem.classList.contains("correct")
   );
-};
-
-// Retrieve list of all teams a player has played for
-const getPlayerTeams = async (player) => {
-  const playerId = player.id;
-  let allTeams = [];
-  await axios
-    .get(`https://api-web.nhle.com/v1/player/${playerId}/landing`)
-    .then((response) => response.data)
-    .then((data) => {
-      const seasonTotals = data.seasonTotals;
-      Array.from(seasonTotals).forEach((season) => {
-        allTeams.push(season.teamName.default);
-      });
-    });
-
-  let distinctTeams = [...new Set(allTeams)];
-  return distinctTeams;
 };
 
 const checkIfPlayerUsed = (player) => {

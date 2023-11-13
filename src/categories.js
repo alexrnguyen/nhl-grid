@@ -1,5 +1,3 @@
-import axios from "axios";
-import { generateAbbreviationMap } from "./controllers/game-controller";
 const createCategories = async (axis) => {
   const categories = document.createElement("div");
   categories.id = `${axis}-categories`;
