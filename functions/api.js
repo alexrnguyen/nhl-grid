@@ -51,8 +51,10 @@ router.get("/teams", async (req, res) => {
   const abbreviationToTeamMap = generateAbbreviationMap();
   let teamsAbbreviations = [];
   teams.forEach((team) => {
-    if (Array.from(abbreviationToTeamMap.keys()).includes(team.triCode)) {
-      teamsAbbreviations.push(team.triCode);
+    for (let key of abbreviationToTeamMap.keys()) {
+      if (key === team.triCode) {
+        teamsAbbreviations.push(team.triCode);
+      }
     }
   });
   res.status(200).send(teamsAbbreviations);
