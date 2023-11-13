@@ -57,7 +57,7 @@ router.get("/teams", async (req, res) => {
       }
     }
   });
-  res.status(200).send(teams);
+  res.status(200).send(teamsAbbreviations);
 });
 
 api.use("/api/", router);
