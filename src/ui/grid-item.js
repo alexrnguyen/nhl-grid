@@ -4,9 +4,9 @@ const addPlayer = (gridItem, player) => {
 
   // Get latest player image
   const playerImg = gridItemChildren[0];
-  playerImg.src = `https://assets.nhle.com/mugs/nhl/latest/${player.id}.png`;
+  playerImg.src = `https://assets.nhle.com/mugs/nhl/latest/${player.playerId}.png`;
   const playerName = gridItemChildren[1];
-  playerName.textContent = player.fullName;
+  playerName.textContent = `${player.firstName} ${player.lastName}`;
 };
 
 const getRow = (index) => {
