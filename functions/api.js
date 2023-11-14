@@ -8,7 +8,7 @@ api.use(express.json());
 const router = Router();
 
 let formattedName = "";
-router.get("/player/:playerName", async (req, res) => {
+router.get("/search/:playerName", async (req, res) => {
   const playerName = req.params.playerName;
   // TO-DO: Handle errors for this request
   const response = await fetch(
@@ -21,19 +21,20 @@ router.get("/player/:playerName", async (req, res) => {
 
 router.get("/player/:id", async (req, res) => {
   const playerId = req.params.id;
-  const playerData = await fetch(
+  const playerObject = await fetch(
     `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
+  const playerData = await playerObject.json();
   res.status(200).send(playerData);
 });
 
 router.get("/player/teams/:id", async (req, res) => {
   const playerId = req.params.id;
   let allTeams = [];
-  const playerData = await fetch(
+  const playerObject = await fetch(
     `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
-
+  const playerData = await playerObject.json();
   const seasonTotals = playerData.seasonTotals;
   Array.from(seasonTotals).forEach((season) => {
     allTeams.push(season.teamName.default);
