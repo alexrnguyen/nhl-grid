@@ -4,8 +4,8 @@ import { triggerWinnerModal } from "../ui/game-over-modal";
 const checkPlayer = async (team1, team2, player) => {
   const abbreviationToTeamMap = generateAbbreviationMap();
 
-  const team1Name = abbreviationToTeamMap[team1];
-  const team2Name = abbreviationToTeamMap[team2];
+  const team1Name = abbreviationToTeamMap.get(team1);
+  const team2Name = abbreviationToTeamMap.get(team2);
   console.log(team1Name, team2Name);
   const teamsResponse = await fetch(`/api/player/teams/${player.playerId}`);
   const teams = await teamsResponse.json();
