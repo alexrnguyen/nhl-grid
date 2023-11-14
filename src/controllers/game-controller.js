@@ -1,4 +1,3 @@
-import axios from "axios";
 import { triggerWinnerModal } from "../ui/game-over-modal";
 
 // Verify that a given player has played for both teams given as arguments
@@ -7,6 +6,7 @@ const checkPlayer = async (team1, team2, player) => {
 
   const team1Name = abbreviationToTeamMap[team1];
   const team2Name = abbreviationToTeamMap[team2];
+  console.log(team1Name, team2Name);
   const teamsResponse = await fetch(`/api/player/teams/${player.playerId}`);
   const teams = await teamsResponse.json();
 
