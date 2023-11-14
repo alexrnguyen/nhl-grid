@@ -21,22 +21,20 @@ router.get("/player/:playerName", async (req, res) => {
 
 router.get("/player/:id", async (req, res) => {
   const playerId = req.params.id;
-  const playerObject = await fetch(
+  const playerData = await fetch(
     `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
-  const playerData = await playerObject.json();
   res.status(200).send(playerData);
 });
 
 router.get("/player/teams/:id", async (req, res) => {
   const playerId = req.params.id;
   let allTeams = [];
-  const playerObject = await fetch(
+  const playerData = await fetch(
     `https://api-web.nhle.com/v1/player/${playerId}/landing`
   );
-  const playerData = await playerObject.json();
 
-  const seasonTotals = playerData.data.seasonTotals;
+  const seasonTotals = playerData.seasonTotals;
   Array.from(seasonTotals).forEach((season) => {
     allTeams.push(season.teamName.default);
   });
