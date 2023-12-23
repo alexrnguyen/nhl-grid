@@ -1,5 +1,9 @@
 import { toggleModal } from "./search-modal";
 
+/**
+ *
+ * @returns
+ */
 const createWinnerModal = () => {
   const winnerModal = document.createElement("div");
   winnerModal.classList.add("modal");
@@ -23,6 +27,9 @@ const createWinnerModal = () => {
   return winnerModal;
 };
 
+/**
+ *
+ */
 const triggerWinnerModal = () => {
   const winnerModal = document.getElementById("winner-modal");
   toggleModal(winnerModal);

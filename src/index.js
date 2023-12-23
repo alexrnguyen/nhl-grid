@@ -9,6 +9,9 @@ import { getRow, getCol } from "./ui/grid-item";
 import { createWinnerModal } from "./ui/game-over-modal";
 import "./assets/icons8-hockey-64.png";
 
+/**
+ *
+ */
 const initializeGame = async () => {
   const content = document.createElement("div");
   content.id = "content";
@@ -32,6 +35,10 @@ const initializeGame = async () => {
   document.body.appendChild(acknowledgement);
 };
 
+/**
+ *
+ * @param {*} index
+ */
 const createGridItem = (index) => {
   const grid = document.getElementById("player-grid");
   const gridItem = document.createElement("div");
@@ -58,6 +65,10 @@ const createGridItem = (index) => {
   });
 };
 
+/**
+ *
+ * @param {*} gridItem
+ */
 const getCategories = (gridItem) => {
   const index = gridItem.dataset.index;
   const row = getRow(index);

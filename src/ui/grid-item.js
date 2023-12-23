@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {*} gridItem
+ * @param {*} player
+ */
 const addPlayer = (gridItem, player) => {
   gridItem.classList.add("correct");
   const gridItemChildren = Array.from(gridItem.childNodes);
@@ -9,10 +14,20 @@ const addPlayer = (gridItem, player) => {
   playerName.textContent = `${player.firstName.default} ${player.lastName.default}`;
 };
 
+/**
+ *
+ * @param {*} index
+ * @returns
+ */
 const getRow = (index) => {
   return Math.floor(index / 3);
 };
 
+/**
+ *
+ * @param {*} index
+ * @returns
+ */
 const getCol = (index) => {
   return index % 3;
 };

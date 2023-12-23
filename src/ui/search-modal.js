@@ -1,6 +1,10 @@
 import { getSearchResults } from "../controllers/search-controller";
 import createPlayerItem from "./player-result.item";
 
+/**
+ *
+ * @returns
+ */
 const createSearchModal = () => {
   const searchModal = document.createElement("div");
   searchModal.className = "modal";
@@ -40,6 +44,10 @@ const createSearchModal = () => {
   return searchModal;
 };
 
+/**
+ *
+ * @param {*} gridItem
+ */
 const triggerSearchModal = (gridItem) => {
   const searchModal = document.getElementById("search-modal");
   toggleModal(searchModal);
@@ -71,6 +79,9 @@ const triggerSearchModal = (gridItem) => {
   };
 };
 
+/**
+ *
+ */
 const clearSearchResults = () => {
   // Clear previous search results
   const playerItemsContainer = document.getElementById(

@@ -1,3 +1,7 @@
+/**
+ *
+ * @param {*} axis
+ */
 const createCategories = async (axis) => {
   const categories = document.createElement("div");
   categories.id = `${axis}-categories`;
@@ -14,6 +18,10 @@ const createCategories = async (axis) => {
   }
 };
 
+/**
+ *
+ * @param {*} category
+ */
 const randomCategory = async (category) => {
   const response = await fetch("/api/teams");
   const teamAbbreviations = await response.json();
@@ -31,10 +39,16 @@ const randomCategory = async (category) => {
   }
 };
 
-// Ensure that no team is chosen more than once!
+/**
+ *
+ * @param {*} teamAbbreviation
+ * @returns
+ */
 const checkCategories = (teamAbbreviation) => {
   const categories = document.querySelectorAll(".category");
   let validCategory = true;
+
+  // Ensure that no team is chosen more than once!
   Array.from(categories).forEach((category) => {
     if (category.dataset.team === teamAbbreviation) {
       validCategory = false;

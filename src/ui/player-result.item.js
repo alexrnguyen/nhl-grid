@@ -2,6 +2,14 @@ import { addPlayer } from "./grid-item";
 import { toggleModal } from "./search-modal";
 import { checkPlayer, checkGameOver } from "../controllers/game-controller";
 
+/**
+ *
+ * @param {*} playerName
+ * @param {*} birthDate
+ * @param {*} playerId
+ * @param {*} gridItem
+ * @returns
+ */
 const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
   const playerItem = document.createElement("div");
   playerItem.className = "player-item";
@@ -32,6 +40,11 @@ const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
   return playerItem;
 };
 
+/**
+ *
+ * @param {*} playerId
+ * @param {*} gridItem
+ */
 const onPlayerSelected = async (playerId, gridItem) => {
   const searchModal = document.getElementById("search-modal");
   const playerResponse = await fetch(`/api/player/${playerId}`);

@@ -7,7 +7,7 @@ api.use(express.json());
 
 const router = Router();
 
-let formattedName = "";
+// Get all player names containing a given input
 router.get("/search/:playerName", async (req, res) => {
   const playerName = req.params.playerName;
   // TO-DO: Handle errors for this request
@@ -19,6 +19,7 @@ router.get("/search/:playerName", async (req, res) => {
   res.status(200).send(data);
 });
 
+// Get player data
 router.get("/player/:id", async (req, res) => {
   const playerId = req.params.id;
   const playerObject = await fetch(
@@ -28,6 +29,7 @@ router.get("/player/:id", async (req, res) => {
   res.status(200).send(playerData);
 });
 
+// Get all teams a player has played for
 router.get("/player/teams/:id", async (req, res) => {
   const playerId = req.params.id;
   let allTeams = [];
@@ -43,6 +45,7 @@ router.get("/player/teams/:id", async (req, res) => {
   res.status(200).send(distinctTeams);
 });
 
+// Get all teams in the NHL
 router.get("/teams", async (req, res) => {
   const response = await fetch("https://api.nhle.com/stats/rest/en/team");
   const data = await response.json();
