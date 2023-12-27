@@ -1,5 +1,5 @@
 import { addPlayer } from "./grid-item";
-import { toggleModal } from "./search-modal";
+import { toggleModal } from "./modal";
 import { checkPlayer, checkGameOver } from "../controllers/game-controller";
 
 /**

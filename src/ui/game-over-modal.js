@@ -1,4 +1,4 @@
-import { toggleModal } from "./search-modal";
+import { toggleModal } from "./modal";
 
 /**
  * Creates the modal displayed when the user wins the game

@@ -1,4 +1,5 @@
 import { getSearchResults } from "../controllers/search-controller";
+import { toggleModal } from "./modal";
 import createPlayerItem from "./player-result.item";
 
 /**
@@ -90,32 +91,9 @@ const clearSearchResults = () => {
   playerItemsContainer.innerHTML = "";
 };
 
-/**
- * Toggles the visibility of a modal
- * @param {*} modal Modal to toggle
- */
-const toggleModal = (modal) => {
-  const overlay = document.getElementById("overlay");
-  modal.classList.toggle("hidden");
-  overlay.classList.toggle("hidden");
-};
-
-/**
- * Create the overlay that darkens the background when a modal is displayed
- * @returns Overlay HTML element
- */
-const createOverlay = () => {
-  const overlay = document.createElement("div");
-  overlay.id = "overlay";
-  overlay.classList.add("hidden");
-  return overlay;
-};
-
 export {
   createSearchModal,
   triggerSearchModal,
   createPlayerItem,
-  createOverlay,
   clearSearchResults,
-  toggleModal,
 };

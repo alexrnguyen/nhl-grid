@@ -1,6 +1,5 @@
 import "./css/style.css";
 import {
-  createOverlay,
   createSearchModal,
   triggerSearchModal,
 } from "./ui/search-modal";
@@ -63,6 +62,17 @@ const createGridItem = (index) => {
       triggerSearchModal(gridItem);
     }
   });
+};
+
+/**
+ * Create the overlay that darkens the background when a modal is displayed
+ * @returns Overlay HTML element
+ */
+const createOverlay = () => {
+  const overlay = document.createElement("div");
+  overlay.id = "overlay";
+  overlay.classList.add("hidden");
+  return overlay;
 };
 
 /**
