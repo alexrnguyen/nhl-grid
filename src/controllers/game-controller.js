@@ -1,7 +1,8 @@
 import { triggerWinnerModal } from "../ui/game-over-modal";
 
 /**
- * Verify that a given player has played for both teams given as arguments
+ * Verify that a given player has played for both teams given as arguments. Display a window alert
+ * if a player has not played for both team1 and team2.
  * @param {*} team1 First team to check for (a category on the grid)
  * @param {*} team2 Second team to check for (a category on the grid)
  * @param {*} player Player to check

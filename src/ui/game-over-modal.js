@@ -1,8 +1,8 @@
 import { toggleModal } from "./search-modal";
 
 /**
- *
- * @returns
+ * Creates the modal displayed when the user wins the game
+ * @returns Modal displayed when the user wins the game
  */
 const createWinnerModal = () => {
   const winnerModal = document.createElement("div");
@@ -28,7 +28,7 @@ const createWinnerModal = () => {
 };
 
 /**
- *
+ * Toggles the winner modal
  */
 const triggerWinnerModal = () => {
   const winnerModal = document.getElementById("winner-modal");

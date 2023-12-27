@@ -1,7 +1,7 @@
 /**
- *
- * @param {*} gridItem
- * @param {*} player
+ * Adds a player's name and image to the game board
+ * @param {*} gridItem Grid item where the player's name and image is added 
+ * @param {*} player JSON object containing information about a player
  */
 const addPlayer = (gridItem, player) => {
   gridItem.classList.add("correct");
@@ -15,18 +15,18 @@ const addPlayer = (gridItem, player) => {
 };
 
 /**
- *
- * @param {*} index
- * @returns
+ * Gets the row of an index
+ * @param {*} index Index of a grid item on game board
+ * @returns Row of index
  */
 const getRow = (index) => {
   return Math.floor(index / 3);
 };
 
 /**
- *
- * @param {*} index
- * @returns
+ * Gets the column of an index
+ * @param {*} index Index of a grid item on game board
+ * @returns Column of index
  */
 const getCol = (index) => {
   return index % 3;

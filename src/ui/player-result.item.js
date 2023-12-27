@@ -3,11 +3,12 @@ import { toggleModal } from "./search-modal";
 import { checkPlayer, checkGameOver } from "../controllers/game-controller";
 
 /**
- *
- * @param {*} playerName
- * @param {*} birthDate
- * @param {*} playerId
- * @param {*} gridItem
+ * Creates a row containing a player's name/date of birth and a submit button displayed 
+ * in the player search modal
+ * @param {*} playerName Name of player
+ * @param {*} birthDate Player's date of birth
+ * @param {*} playerId Player id (defined by NHL)
+ * @param {*} gridItem Grid item HTML element selected by player
  * @returns
  */
 const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
@@ -41,9 +42,10 @@ const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
 };
 
 /**
- *
- * @param {*} playerId
- * @param {*} gridItem
+ * Add a player to the game board if a player has played for both teams specified
+ * by the grid item given as an argument.
+ * @param {*} playerId ID of player selected in search modal
+ * @param {*} gridItem Grid item selected by user
  */
 const onPlayerSelected = async (playerId, gridItem) => {
   const searchModal = document.getElementById("search-modal");

@@ -1,8 +1,8 @@
 /**
- *
- * @param {*} axis
+ * Choose categories for a given axis (either row or column)
+ * @param {*} axis Specifies whether a category is a row or column category. Must be either 'row' or 'col'
  */
-const createCategories = async (axis) => {
+const chooseCategories = async (axis) => {
   const categories = document.createElement("div");
   categories.id = `${axis}-categories`;
 
@@ -19,8 +19,8 @@ const createCategories = async (axis) => {
 };
 
 /**
- *
- * @param {*} category
+ * Generate a random category
+ * @param {*} category Category HTML element
  */
 const randomCategory = async (category) => {
   const response = await fetch("/api/teams");
@@ -40,9 +40,9 @@ const randomCategory = async (category) => {
 };
 
 /**
- *
- * @param {*} teamAbbreviation
- * @returns
+ * Ensures that a category is not used before it is set
+ * @param {*} teamAbbreviation Abbreviation of NHL team (3 characters)
+ * @returns True if a category has not been used on the game board, false otherwise
  */
 const checkCategories = (teamAbbreviation) => {
   const categories = document.querySelectorAll(".category");
@@ -57,4 +57,4 @@ const checkCategories = (teamAbbreviation) => {
   return validCategory;
 };
 
-export { createCategories };
+export { chooseCategories };

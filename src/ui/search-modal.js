@@ -2,8 +2,9 @@ import { getSearchResults } from "../controllers/search-controller";
 import createPlayerItem from "./player-result.item";
 
 /**
- *
- * @returns
+ * Creates a search modal on game initialization. The search modal is
+ * hidden by default.
+ * @returns Search modal HTML element
  */
 const createSearchModal = () => {
   const searchModal = document.createElement("div");
@@ -45,8 +46,8 @@ const createSearchModal = () => {
 };
 
 /**
- *
- * @param {*} gridItem
+ * Displays the search modal when the user clicks on a grid item with no player
+ * @param {*} gridItem Grid item selected by user
  */
 const triggerSearchModal = (gridItem) => {
   const searchModal = document.getElementById("search-modal");
@@ -80,22 +81,29 @@ const triggerSearchModal = (gridItem) => {
 };
 
 /**
- *
+ * Clears the player results shown below the search bar
  */
 const clearSearchResults = () => {
-  // Clear previous search results
   const playerItemsContainer = document.getElementById(
     "player-items-container"
   );
   playerItemsContainer.innerHTML = "";
 };
 
+/**
+ * Toggles the visibility of a modal
+ * @param {*} modal Modal to toggle
+ */
 const toggleModal = (modal) => {
   const overlay = document.getElementById("overlay");
   modal.classList.toggle("hidden");
   overlay.classList.toggle("hidden");
 };
 
+/**
+ * Create the overlay that darkens the background when a modal is displayed
+ * @returns Overlay HTML element
+ */
 const createOverlay = () => {
   const overlay = document.createElement("div");
   overlay.id = "overlay";
