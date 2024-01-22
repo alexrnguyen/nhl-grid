@@ -1,4 +1,5 @@
 import QuestionMark from "../assets/question-mark.svg"
+import { toggleModal } from "./modal";
 
 const createNavbar = () => {
     // TODO: Add navbar containing: site name, instructions (how to play) 
@@ -16,6 +17,11 @@ const createNavbar = () => {
     helpIcon.src = QuestionMark;
     helpIcon.classList.add("icon");
     helpButton.appendChild(helpIcon);
+
+    helpButton.addEventListener("click", () => {
+        const helpModal = document.getElementById("help-modal");
+        toggleModal(helpModal);
+    })
 
     navbar.appendChild(logo);
     navbar.appendChild(helpButton);
