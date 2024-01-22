@@ -7,11 +7,17 @@ import { chooseCategories } from "./categories";
 import { getRow, getCol } from "./ui/grid-item";
 import { createWinnerModal } from "./ui/game-over-modal";
 import "./assets/icons8-hockey-64.png";
+import createNavbar from "./ui/navbar";
 
 /**
  * Start a new game by creating a game board and selecting categories for each row and column
  */
 const initializeGame = async () => {
+  document.body.appendChild(createNavbar());
+  document.body.appendChild(createSearchModal());
+  document.body.appendChild(createWinnerModal());
+  document.body.appendChild(createOverlay());
+
   const content = document.createElement("div");
   content.id = "content";
   document.body.appendChild(content);
@@ -24,9 +30,6 @@ const initializeGame = async () => {
   for (let i = 0; i < 9; i++) {
     createGridItem(i);
   }
-  document.body.appendChild(createSearchModal());
-  document.body.appendChild(createWinnerModal());
-  document.body.appendChild(createOverlay());
 
   const acknowledgement = document.createElement("footer");
   acknowledgement.textContent =

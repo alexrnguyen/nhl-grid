@@ -8,6 +8,11 @@
   --grid-gap: 1rem;
 }
 
+@font-face {
+  font-family: 'NHL';
+  src: url('../fonts/NHL.ttf');
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: black;
@@ -15,6 +20,27 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#site-logo {
+  font-family: 'NHL';
+  font-size: 2rem;
+  color: white;
+}
+
+#help-button {
+  border: none;
+  background-color: transparent;
+}
+
+.icon {
+  width: 2rem;
 }
 
 #content {
