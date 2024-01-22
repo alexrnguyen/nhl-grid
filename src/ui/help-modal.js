@@ -18,7 +18,6 @@ const createHelpModal = () => {
     });
 
     const header = document.createElement("h1");
-    header.id = "modal-header"
     header.textContent = "How to Play";
 
     headerContainer.appendChild(header);
