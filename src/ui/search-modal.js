@@ -63,9 +63,9 @@ const triggerSearchModal = (gridItem) => {
   const playerItemsContainer = document.getElementById(
     "player-items-container"
   );
-  searchInput.oninput = setTimeout(async (event) => {
+  searchInput.oninput = async (event) => {
     const searchResults = await getSearchResults(searchInput.value);
-    searchResults.forEach(async (player) => {
+    await Promise.all(searchResults.forEach(async (player) => {
       const playerId = Number(player["playerId"]);
       console.log("Player", player);
       console.log("ID", playerId);
@@ -77,8 +77,8 @@ const triggerSearchModal = (gridItem) => {
       playerItemsContainer.appendChild(
         createPlayerItem(name, birthDate, playerId, gridItem)
       );
-    });
-  }, 2000); // only refresh results after 2 seconds (to avoid making too many api calls)
+    }));
+  };
 };
 
 /**
