@@ -53,6 +53,7 @@ const createSearchModal = () => {
 const triggerSearchModal = (gridItem) => {
   const searchModal = document.getElementById("search-modal");
   toggleModal(searchModal);
+  clearSearchResults();
   const team1 = gridItem.dataset.team1;
   const team2 = gridItem.dataset.team2;
   const header = document.getElementById("modal-header");
@@ -74,7 +75,7 @@ const triggerSearchModal = (gridItem) => {
 const fetchSearchData = async (searchInput, gridItem) => {
   const playerItemsContainer = document.getElementById("player-items-container");
   const searchResults = await getSearchResults(searchInput.value);
-  await Promise.all(searchResults.forEach(async (player) => {
+  searchResults.forEach(async (player) => {
     const playerId = Number(player["playerId"]);
     console.log("Player", player);
     console.log("ID", playerId);
@@ -83,10 +84,14 @@ const fetchSearchData = async (searchInput, gridItem) => {
     console.log("Data", playerData);
     const birthDate = playerData.birthDate;
     const name = player["name"];
-    playerItemsContainer.appendChild(
-      createPlayerItem(name, birthDate, playerId, gridItem)
-    );
-  }));
+
+    // Add item to player item container if it is not already in the container
+    if (playerItemsContainer.querySelector(`.player-item[data-playerid="${Number(playerId)}"]`) === null) {
+      playerItemsContainer.appendChild(
+        createPlayerItem(name, birthDate, playerId, gridItem)
+      );
+    }
+  });
 };
 
 /**

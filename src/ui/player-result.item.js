@@ -14,6 +14,7 @@ import { checkPlayer, checkGameOver } from "../controllers/game-controller";
 const createPlayerItem = (playerName, birthDate, playerId, gridItem) => {
   const playerItem = document.createElement("div");
   playerItem.className = "player-item";
+  playerItem.dataset.playerid = playerId;
 
   const leftContainer = document.createElement("div");
   leftContainer.className = "player-result-left";
