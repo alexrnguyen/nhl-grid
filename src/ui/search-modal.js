@@ -61,25 +61,44 @@ const triggerSearchModal = (gridItem) => {
 
   const searchInput = document.getElementById("search-player");
   let typingTimer;
+  let abortController = new AbortController();
+  const debounceDelay = 250; // Adjust as needed
+
+  // Debounce function to ensure search query is not processed too often
+  const fetchSearchDataDebounced = debounce(() => {
+    fetchSearchData(searchInput, gridItem, abortController);
+  }, debounceDelay);
+
   searchInput.addEventListener("keyup", () => {
     clearTimeout(typingTimer);
-    typingTimer = setTimeout(() => fetchSearchData(searchInput, gridItem), 250);
-  })
+    abortController.abort(); // cancel previous request
+    abortController = new AbortController()
+    typingTimer = setTimeout(fetchSearchDataDebounced, debounceDelay);
+  });
 };
 
 /**
- * Fetches seach result data from the API
- * @param {*} searchInput Input enterred by user in the search modal
+ * Fetches search result data from the API
+ * @param {*} searchInput Input entered by user in the search modal
  * @param {*} gridItem Grid item selected by user
+ * @param {*} abortController Cancels the fetch request if another search request is made
  */
-const fetchSearchData = async (searchInput, gridItem) => {
+const fetchSearchData = async (searchInput, gridItem, abortController) => {
   const playerItemsContainer = document.getElementById("player-items-container");
   const searchResults = await getSearchResults(searchInput.value);
   searchResults.forEach(async (player) => {
     const playerId = Number(player["playerId"]);
     console.log("Player", player);
     console.log("ID", playerId);
-    const playerResponse = await fetch(`/api/player/${playerId}`);
+    const playerResponse = await fetch(`/api/player/${playerId}`, { signal: abortController.signal })
+    .catch(error => {
+      if (error.name === 'AbortError') {
+        // Request was aborted, so do nothing
+        return;
+      }
+      throw error;
+    });
+    if (!playerResponse) return; // abort further processing if the request was aported
     const playerData = await playerResponse.json();
     console.log("Data", playerData);
     const birthDate = playerData.birthDate;
@@ -93,6 +112,19 @@ const fetchSearchData = async (searchInput, gridItem) => {
     }
   });
 };
+
+// Debounce function
+function debounce(func, delay) {
+  let timeoutId;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(context, args);
+    }, delay);
+  };
+}
 
 /**
  * Clears the player results shown below the search bar
