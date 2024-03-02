@@ -60,25 +60,34 @@ const triggerSearchModal = (gridItem) => {
   header.textContent = `${team1}-${team2}`;
 
   const searchInput = document.getElementById("search-player");
-  const playerItemsContainer = document.getElementById(
-    "player-items-container"
-  );
-  searchInput.oninput = async (event) => {
-    const searchResults = await getSearchResults(searchInput.value);
-    await Promise.all(searchResults.forEach(async (player) => {
-      const playerId = Number(player["playerId"]);
-      console.log("Player", player);
-      console.log("ID", playerId);
-      const playerResponse = await fetch(`/api/player/${playerId}`);
-      const playerData = await playerResponse.json();
-      console.log("Data", playerData);
-      const birthDate = playerData.birthDate;
-      const name = player["name"];
-      playerItemsContainer.appendChild(
-        createPlayerItem(name, birthDate, playerId, gridItem)
-      );
-    }));
-  };
+  let typingTimer;
+  searchInput.addEventListener("keyup", () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => fetchSearchData(searchInput, gridItem), 250);
+  })
+};
+
+/**
+ * Fetches seach result data from the API
+ * @param {*} searchInput Input enterred by user in the search modal
+ * @param {*} gridItem Grid item selected by user
+ */
+const fetchSearchData = async (searchInput, gridItem) => {
+  const playerItemsContainer = document.getElementById("player-items-container");
+  const searchResults = await getSearchResults(searchInput.value);
+  await Promise.all(searchResults.forEach(async (player) => {
+    const playerId = Number(player["playerId"]);
+    console.log("Player", player);
+    console.log("ID", playerId);
+    const playerResponse = await fetch(`/api/player/${playerId}`);
+    const playerData = await playerResponse.json();
+    console.log("Data", playerData);
+    const birthDate = playerData.birthDate;
+    const name = player["name"];
+    playerItemsContainer.appendChild(
+      createPlayerItem(name, birthDate, playerId, gridItem)
+    );
+  }));
 };
 
 /**
