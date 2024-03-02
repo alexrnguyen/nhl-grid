@@ -61,10 +61,10 @@ const triggerSearchModal = (gridItem) => {
 
   const searchInput = document.getElementById("search-player");
   let typingTimer;
-  searchInput.addEventListener("keyup", () => {
+  searchInput.oninput = () => {
     clearTimeout(typingTimer);
     typingTimer = setTimeout(() => fetchSearchData(searchInput, gridItem), 250);
-  })
+  }
 };
 
 /**
