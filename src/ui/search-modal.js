@@ -53,7 +53,6 @@ const createSearchModal = () => {
 const triggerSearchModal = (gridItem) => {
   const searchModal = document.getElementById("search-modal");
   toggleModal(searchModal);
-  clearSearchResults();
   const team1 = gridItem.dataset.team1;
   const team2 = gridItem.dataset.team2;
   const header = document.getElementById("modal-header");
