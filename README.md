@@ -4,6 +4,8 @@ An NHL trivia game in which users must name a player that played for the teams g
 
 [Live Preview](https://nhlgrid.netlify.app)
 
+![nhl-grid-screenshot](https://github.com/alexrnguyen/nhl-grid/assets/90285768/05f75a52-f4f5-44f7-8231-cc7bf796c85c)
+
 ## Upcoming Features
 
 - Save game state when app is closed
